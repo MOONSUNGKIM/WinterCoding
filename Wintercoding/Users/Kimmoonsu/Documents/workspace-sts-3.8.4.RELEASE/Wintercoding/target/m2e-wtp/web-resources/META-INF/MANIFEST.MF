@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Wintercoding
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Kimmoonsu
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_101
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Wintercoding
+Created-By: Maven Integration for Eclipse
+
