@@ -17,8 +17,6 @@ public class WinterCodingApplication extends WebMvcConfigurerAdapter{
 		SpringApplication.run(WinterCodingApplication.class, args);
 	}
 	
-	
-
 	 /*
     * Mybatis SqlSessionFactory 설정
     */
