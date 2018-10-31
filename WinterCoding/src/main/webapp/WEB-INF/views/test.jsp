@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- ê¸°ë³¸ê¸°ëŠ¥ -->
+<!-- ±âº»±â´É -->
 <%@  taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!-- í¬ë©§ ê¸°ëŠ¥ (í˜•ì‹ì§€ì •)-->
+<!-- Æ÷¸ä ±â´É (Çü½ÄÁöÁ¤)-->
 <%@  taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!-- í•¨ìˆ˜ ê¸°ëŠ¥ -->
+<!-- ÇÔ¼ö ±â´É -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>WinterCoding</title>
+<title>MIT - HOME</title>
 <link rel="apple-touch-icon" sizes="76x76"
 	href="/resources/assets/img/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96"
@@ -23,10 +23,10 @@
 <meta name="viewport" content="width=device-width" />
 
 
-<!-- Detail PopUPì°½ì„ ìœ„í•´ í•„ìš”í•œ cssì´ë‹¤. (MODALê´€ë ¨ css ) -->
+<!-- Detail PopUPÃ¢À» À§ÇØ ÇÊ¿äÇÑ cssÀÌ´Ù. (MODAL°ü·Ã css ) -->
 <link rel="stylesheet" href="/resources/demo/css/msmodal.css" />
 
-<!-- ë¡œë”©ì— í•„ìš”  -->
+<!-- ·Îµù¿¡ ÇÊ¿ä  -->
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -247,7 +247,7 @@ body {
 
 #ranking-slide li:nth-child(6) {
 	/* margin: 175px 16px 0 -712px; */
-	margin: 230px 16px 0 -785px;	/* ì´ êµ¬ê°„ì´ 6~9ê¹Œì§€ì˜ ìœ„ì¹˜ì¡°ì •ì„. */
+	margin: 230px 16px 0 -785px;	/* ÀÌ ±¸°£ÀÌ 6~9±îÁöÀÇ À§Ä¡Á¶Á¤ÀÓ. */
 }
 
 #ranking-slide li:nth-child(n+10):nth-child(-n+15) {
@@ -320,6 +320,7 @@ body {
 
 </style>
 
+
 <body>
 		<%@include file="header.jsp"%>
 
@@ -391,7 +392,11 @@ body {
 	<!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
 	<script src="/resources/assets/js/paper-dashboard.js"></script>
 
+
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
+
+
 
 	<script>
 var bus = new Vue();
@@ -403,7 +408,7 @@ const app = new Vue({
       showDetailModal:false
     },  
     mounted: function() {
-    	 <c:forEach var="vo" items="${TodoList}">// controllerì—ì„œ Listë¥¼ ë°›ì•„ foreach   
+    	 <c:forEach var="vo" items="${TodoList}">// controller¿¡¼­ List¸¦ ¹Ş¾Æ foreach   
         this.items = this.items.concat ({
        	title : "${vo.title}",
        	position : "${vo.position}",
@@ -439,7 +444,6 @@ const app = new Vue({
       }
       
    },
-   
    components:{
 	   /* 'detail': child */
 	   detail: {
@@ -448,7 +452,7 @@ const app = new Vue({
 			  <div class="modal-background" style="bottom:0; left:0;position:absolute;right:0;top:0;background-color:rgba(10,10,10,.86)" @click="$emit('close')"></div>
 			  <div class="modal-card" style="width:60%; height:80%">
 			    <header class="modal-card-head">
-			    <h2 style="color:787878;"><strong> Title : </strong> {{title}} <hr> </h2>
+			    <h2 style="color:787878;">{{title}}</h2>
 			      <p class="modal-card-title"></p>
 			      <button class="delete" aria-label="close" @click="$emit('close')"></button>
 			    </header>
@@ -458,22 +462,22 @@ const app = new Vue({
 				    <table style="width:90%;border:hidden;" valign="top" >
 				    	<tr style="text-align:left;border:hidden">
 							<td style="border:hidden;">
-								<p><strong> position : </strong> {{position}}</p>
-								<p><strong> duedate : </strong> {{duedate}}<hr></p>
+							
+								<p><strong> {{title}}|</strong> {{title}} <hr></p>
+								<p><strong> position </strong> {{position}}</p>
+								<p><strong>duedate</strong> {{duedate}}</p>
 							</td>
 						</tr>
-						
 						<tr style="text-align:left;border:hidden">
-							<td style="border:hidden;">
-								<strong>content</strong>
-	                            <p>{{content}}<hr></p>
+							<td  colspan="2">
+								<h3><strong>content</strong></h3><hr>
+	                            {{content}}
 							</td>
+							
 						</tr>
-					
 						<tr style="text-align:left;border:hidden">
-							<td colspan="2" style="border:hidden;">
-							<button type="button">Update</button>
-							<button type="button" @click="$emit('close')">Cancel</button>
+							<td>
+								
 							</td>
 						</tr>
 						
@@ -486,9 +490,9 @@ const app = new Vue({
 			</div>
 			`
 	    	,	
-	         created : function() { // busë¥¼ í†µí•´ ì´ë²¤íŠ¸ê°€ í˜¸ì¶œ ì‹œ ë™ì‘í•  ìˆ˜ ìˆë„ë¡ listenerì§€ì •  		ë¶€ëª¨ì˜ dataì— ì ‘ê·¼í•˜ê³ ì‹¶ë‹¤ë©´ $onê³¼ $emit ë¥¼ í†µí•´ì„œ ì ‘ê·¼ ê°€ëŠ¥í•˜ë‹¤!!
+	         created : function() { // bus¸¦ ÅëÇØ ÀÌº¥Æ®°¡ È£Ãâ ½Ã µ¿ÀÛÇÒ ¼ö ÀÖµµ·Ï listenerÁöÁ¤  		ºÎ¸ğÀÇ data¿¡ Á¢±ÙÇÏ°í½Í´Ù¸é $on°ú $emit ¸¦ ÅëÇØ¼­ Á¢±Ù °¡´ÉÇÏ´Ù!!
 		        var self = this;
-				bus.$on("imageTransport", function(list) { // ëª¨ë“  userì˜ pointë¥¼ í•©ì‚°í•œë‹¤. 
+				bus.$on("imageTransport", function(list) { // ¸ğµç userÀÇ point¸¦ ÇÕ»êÇÑ´Ù. 
 				    self.title = list.title;
 					self.content=list.content;
 					self.position = list.position;
@@ -496,11 +500,9 @@ const app = new Vue({
 				});
 				
 			} 
-			
+
 	}
-	   
- }
-   
+}
 })
 
 </script>
@@ -514,6 +516,7 @@ function prev(){
 function next(){
 	div.className = 'trans01';
 }
+
 
 $(function() {
     var count = $('#rank-list li').length;
@@ -544,7 +547,7 @@ $(function() {
 	<!--materialize js-->
 	<script type="text/javascript" src="/resources/demo/js/materialize.js"></script>
 
-	<!--  ì´ê±° ì—†ìŒ ë¡œë”© ê³„ì† ì§€ì†ë¨  -->
+	<!--  ÀÌ°Å ¾øÀ½ ·Îµù °è¼Ó Áö¼ÓµÊ  -->
 	<!--plugins.js - Some Specific JS codes for Plugin Settings-->
 	<script type="text/javascript" src="/resources/demo/js/plugins.js"></script>
 
