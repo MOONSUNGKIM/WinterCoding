@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.ms.Mapper.TodoMapper;
@@ -37,10 +39,10 @@ public class TodoController {
 	}	
 	
 	//
-	
+
 	
 	static List<TodoVo> TodoList;
-	
+	static int max ;
 	@RequestMapping(value="/home")  
 	public ModelAndView todolist(ModelAndView mav) throws Exception {		
 		TodoList = todomapper.todolist(); //  상품전체리스트를 담는다.		
@@ -49,9 +51,18 @@ public class TodoController {
 		                           // home.jsp에서 foreach 돌면서 해당 name에 따른 img를 띄운다
 		                           // ( 상품에 대한 이미지는 src/main/resources/static/productImg에 )
 		
+		max = TodoList.size();
+		
 		System.out.println("=============" + TodoList.get(0).getTitle());
 		System.out.println("==TodoList -> home ==");
 		return mav;            
-	}	
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@ModelAttribute TodoVo vo) throws Exception {
+		System.out.println("=====================!! UPDATE !!======================");
+		//todomapper.movieupdate(vo);
+		return "redirect:home";
+	}
 
 }

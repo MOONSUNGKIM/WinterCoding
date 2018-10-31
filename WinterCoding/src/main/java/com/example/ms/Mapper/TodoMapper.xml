@@ -9,4 +9,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM todo
     </select>
  
+    <!--    update   -->
+    <update id="todoupdate" >
+      UPDATE todo SET      
+      title = #{title},
+      content = #{content},
+      position = #{position},
+      duedate = #{duedate},
+      complete = #{complete}
+      WHERE no = #{no}
+    </update>
+ 
  </mapper>

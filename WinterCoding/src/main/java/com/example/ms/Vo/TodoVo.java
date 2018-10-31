@@ -3,12 +3,22 @@ package com.example.ms.Vo;
 import java.util.Date;
 
 public class TodoVo {
+ private int no;
  private String title;
  private String content;
  private int position;
  private Date duedate;
  private int complete;
+ private int max;
  
+public int getNo() {
+	return no;
+}
+
+public void setNo(int no) {
+	this.no = no;
+}
+
 public String getTitle() {
 	return title;
 }
@@ -41,6 +51,15 @@ public int getComplete() {
 public void setComplete(int complete) {
 	this.complete = complete;
 }
+
+public int getMax() {
+	return max;
+}
+
+public void setMax(int max) {
+	this.max = max;
+}
+
 
 
 }

@@ -364,8 +364,12 @@ body {
 	                                        <td>{{item.duedate}}</td>
 	                                        <td></td>
 										 </tr>
+						
 										 </tbody>
+									 
 										 </table>
+							
+										 
 								 </div>
 	                        </div><!--  end card  -->
 	                    </div> <!-- end col-md-12 -->
@@ -444,13 +448,14 @@ const app = new Vue({
 	   /* 'detail': child */
 	   detail: {
 	    	template: `
+	    	<form name="form1" method="post" action="${pageContext.servletContext.contextPath}/home">
 			<div class="modal is-active">
 			  <div class="modal-background" style="bottom:0; left:0;position:absolute;right:0;top:0;background-color:rgba(10,10,10,.86)" @click="$emit('close')"></div>
 			  <div class="modal-card" style="width:60%; height:80%">
 			    <header class="modal-card-head">
 			    <h2 style="color:787878;"><strong> Title : </strong> {{title}} <hr> </h2>
 			      <p class="modal-card-title"></p>
-			      <button class="delete" aria-label="close" @click="$emit('close')"></button>
+			      <button type="button" class="delete" aria-label="close" @click="$emit('close')"></button>
 			    </header>
 			   <!-- <section class="modal-card-body" style="width:50%; height:100%"> -->
 			   <div class="modal-card-body" style="width:100%; height:100%;">
@@ -458,8 +463,18 @@ const app = new Vue({
 				    <table style="width:90%;border:hidden;" valign="top" >
 				    	<tr style="text-align:left;border:hidden">
 							<td style="border:hidden;">
-								<p><strong> position : </strong> {{position}}</p>
+							    <p><strong> now position : {{position}}</strong></p>
+								<p><strong> position : </strong>
+								<input type="text" name="num" value="1" class="num" readonly><br>
+								<div>
+				                  <img src="http://placehold.it/10x10" alt="" width="10" height="10" class="bt_up"/>
+				                </div>
+				                <div>
+				                  <img src="http://placehold.it/10x10" alt="" width="10" height="10" class="bt_down" />
+				                </div>
+						        </p>
 								<p><strong> duedate : </strong> {{duedate}}<hr></p>
+								
 							</td>
 						</tr>
 						
@@ -469,13 +484,15 @@ const app = new Vue({
 	                            <p>{{content}}<hr></p>
 							</td>
 						</tr>
-					
+						
 						<tr style="text-align:left;border:hidden">
 							<td colspan="2" style="border:hidden;">
-							<button type="button">Update</button>
+							<button type="button" id= "btnUpdate">Update</button>
 							<button type="button" @click="$emit('close')">Cancel</button>
 							</td>
 						</tr>
+						
+						
 						
 					</table>
 				</div>
@@ -484,6 +501,7 @@ const app = new Vue({
 			    </footer>
 			  </div>
 			</div>
+			</form>
 			`
 	    	,	
 	         created : function() { // bus를 통해 이벤트가 호출 시 동작할 수 있도록 listener지정  		부모의 data에 접근하고싶다면 $on과 $emit 를 통해서 접근 가능하다!!
@@ -496,15 +514,47 @@ const app = new Vue({
 				});
 				
 			} 
+		
 			
+
 	}
 	   
  }
    
 })
 
+
+
+
+
+$(function() {
+	  $('.bt_up').click(function() {
+	    var n = $('.bt_up').index(this);
+	    var num = $(".num:eq("+n+")").val();
+	    num = (num*1)+1;
+	    $(".num:eq("+n+")").val(num);
+	    num = 0;
+	  });
+	  $('.bt_down').click(function() {
+	    var n = $('.bt_down').index(this);
+	    var num = $(".num:eq("+n+")").val();
+	    num = (num*1)-1;
+	    if(num<1) {
+	      num = 1;
+	    }
+	    $(".num:eq("+n+")").val(num);
+	    num = 0;
+	  });
+	})
+
+
+ 
+
 </script>
 	<script>
+	
+	
+	
 var div = document.getElementById('ranking-slide');
 
 function prev(){
@@ -529,6 +579,15 @@ $(function() {
 
     step(1);
 });
+
+
+$(document).ready(function() {
+    $("#btnUpdate").click(function() {
+    	alert(" update ");
+        document.form1.submit();
+    });
+});
+
 
 
 // $('#bootstrap-table').ready(function(){
