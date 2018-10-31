@@ -20,12 +20,11 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-     <!-- Bootstrap core CSS -->
+     <!-- Bootstrap core CSS     -->
     <link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!--  Paper Dashboard core CSS -->
+    <!--  Paper Dashboard core CSS    -->
     <link href="/resources/assets/css/paper-dashboard.css" rel="stylesheet"/>
-
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="/resources/assets/css/demo.css" rel="stylesheet" />
@@ -36,7 +35,6 @@
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
 
-
 </head>
 
 <body>
@@ -44,10 +42,6 @@
  <%@include file="header.jsp"%>
  
  <div id="todo" v-clock>
- <detail modal-class="media-manager-details" v-show="showDetailModal"
-			@close="showDetailModal=false">
-		<p>Here is SLOT AREA</p>
-		</detail>
  
 <!--  <div class="wrapper"> -->
 <!-- 	    <div class="main-panel"> -->
@@ -66,17 +60,15 @@
 	                                    <thead>
 	                                        <th data-field="state" data-checkbox="true"></th>
 	                                        <th data-field="position" data-sortable="true"> Position</th>
-	                                        <th data-field="title" >Title</th>
-	                                        <th data-field="content" >Content</th>
+	                                        <th data-field="title">Title</th>
 	                                    	<th data-field="duedate" data-sortable="true">Duedate</th>
 	                                    	<th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
 	                                    </thead>
 	                                    <tbody>
-	                                        <tr div v-for = "item in items" onclick="handleImageDetails(item)" >
+	                                        <tr div v-for = "item in items">
 	                                            <td></td>
 	                                        	<td>{{item.position}}</td>
 	                                        	<td>{{item.title}}</td>
-	                                        	<td>{{item.content}}</td>
 	                                        	<td>{{item.duedate}}</td>
 	                                        	<td></td>
 	                                        </tr>
@@ -96,116 +88,30 @@
 <!-- 	</div> -->
  
  
+ 
  <script src = "https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
  <script>
  
- var bus = new Vue();
- 
- const todo = new Vue ({
+ var todo = new Vue ({
 	    el: "#todo",
 	    data: {
-	      items : [],
-	      max : 36,
-	      showDetailModea:false
+	      items : []
 	    },
 	    mounted: function() {
 	     	 <c:forEach var="vo" items="${TodoList}">// controller에서 List를 받아 foreach   
 	         this.items = this.items.concat ({
 	        	title : "${vo.title}",
-	        	content:"${vo.content}",
 	        	position : "${vo.position}",
 	        	duedate : "${vo.duedate}"
 	         });
 	         </c:forEach>
-	    },
-	    methods: {
-	    	handleImageDetails(item) {
-	        	this.showDetailModal=true;
-	        	this.items.title=item.title;
-	        	this.items.content = item.content;
-	        	this.items.position=item.director;
-	        	this.items.duedate=item.duedate;
-	        	
-	    	    bus.$emit('imageTransport', this.items);
-	    		
-	    	   // this.$emit('custom-event-aaa', item);
-	    	      
-	    	    /*
-	    	    	sender() {
-	                EventBus.$emit('message', this.text);	// "message"라는 이벤트를 시작한다. 
-	            },
-	            onReceive(text) {
-	                this.receiveText = text;
-	            }
-	    	    */
-	        	
-	          }
-	    },
-	    components:{
-	 	   /* 'detail': child */
-	 	   detail: {
-	 	    	template: `
-	 			<div class="modal is-active">
-	 			  <div class="modal-background"  @click="$emit('close')"></div>
-	 			  <div class="modal-card" style="width:60%; height:80%">
-	 			    <header class="modal-card-head">
-	 			    <h2 style="color:787878;">{{title}}</h2>
-	 			      <p class="modal-card-title"></p>
-	 			      <button class="delete" aria-label="close" @click="$emit('close')"></button>
-	 			    </header>
-	 			   <!-- <section class="modal-card-body" style="width:50%; height:100%"> -->
-	 			   <div class="modal-card-body" style="width:100%; height:100%;">
-	 			      <!-- Content ... -->
-	 				    <table style="width:90%;border:hidden;" valign="top" >
-	 				    	<tr style="text-align:left;border:hidden">
-	 					    	<td style="border:hidden;width:250px; height:350px;">
-	 								<img style = "border: 5px solid lightgray; border-radius: 7px; -moz-border-radius: 7px;-khtml-border-radius: 7px;-webkit-border-radius: 7px;width: 220px; height: 330px;":src="'/image/'+fileName+'.jpg'"  @click="handleImageDetails(item)" />
-	 							</td>
-	 							<td style="border:hidden;">
-	 								<p><span class="age12"> {{title}} <hr></p>
-	 								<p><strong>Position|</strong> {{position}} </p>
-	 								<p><strong>Duedate |</strong> {{duedate}} </p>
-	 							</td>
-	 						</tr>
-	 						<tr style="text-align:left;border:hidden">
-	 							<td  colspan="2">
-	 								<h3><strong>CONTENT</strong></h3><hr>
-	 								{{content}}
-	 							</td>
-	 						</tr>
-	 						<tr style="text-align:left;border:hidden">
-	 							<td>
-	 								
-	 							</td>
-	 						</tr>
-	 						
-	 					</table>
-	 					
-	 				</div>
-	 				
-	 			  </div>
-	 			</div>
-	 			`
-		    	,	
-	 	         created : function() { // bus를 통해 이벤트가 호출 시 동작할 수 있도록 listener지정  		부모의 data에 접근하고싶다면 $on과 $emit 를 통해서 접근 가능하다!!
-	 		        var self = this;
-	 				bus.$on("imageTransport", function(list) { // 모든 user의 point를 합산한다. 
-	 				self.title=list.title;
-	 				self.content=list.content;		//alert를 통해서 진행순서를 보면 처음에 handleImageDetails(item) 호출되고 emit를 통해서 $on으로 간
-	 				self.position=list.position;
-	 				self.duedate=list.duedate;
-	 				});
-	 			},
-	 			
-	 	}
-	 }
-	    
-	    
+	    }
  });
  
 </script>
  
 </body>
+
 
 <!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
 	<script src="/resources/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
@@ -316,7 +222,7 @@
 	                showColumns: true,
 	                pagination: true,
 	                searchAlign: 'left',
-	                pageSize: 8,
+	                pageSize: 2,
 	                clickToSelect: false,
 	                pageList: [8,10,25,50,100],
 
