@@ -53,6 +53,10 @@
 	rel='stylesheet' type='text/css'>
 <link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
 
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js">
+</script>
+
 </head>
 
 <style>
