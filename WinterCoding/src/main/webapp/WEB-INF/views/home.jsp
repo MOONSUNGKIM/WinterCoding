@@ -84,7 +84,7 @@
 	                                <div class="toolbar">
 	                                <h4>TODO LIST VIEW</h4>
 	                                <div align="right" ><h4></h4><a href="${pageContext.servletContext.contextPath}/insert" >
-                          						 <i class="ti-plus"> NEW </i>
+                          						<h4> <i class="ti-plus"> NEW </i></h4>
                       				 </a>
 	                                </div>
 	                                
@@ -208,40 +208,30 @@ const app = new Vue({
 				    <table style="width:90%;border:hidden;" valign="top" >
 				    	<tr style="text-align:left;border:hidden">
 							<td style="border:hidden;">
-							    <p><strong> now position : {{position}}</strong></p>
-								<p><strong> position : </strong>
-								<input type="text" name="num" value="1" class="num" readonly><br>
-								<div>
-				                  <img src="http://placehold.it/10x10" alt="" width="10" height="10" class="bt_up"/>
-				                </div>
-				                <div>
-				                  <img src="http://placehold.it/10x10" alt="" width="10" height="10" class="bt_down" />
-				                </div>
+							    <p><h5><strong> now position : </strong></h5>{{position}}</p>
 						        </p>
-								<p><strong> duedate : </strong> {{duedate}}<hr></p>
-								
+								<p><h5><strong> duedate : </strong></h5> {{duedate}}</p>
 							</td>
 						</tr>
 						
 						<tr style="text-align:left;border:hidden">
 							<td style="border:hidden;">
-								<strong>content</strong>
-	                            <p>{{content}}<hr></p>
+								<h5><strong>content</strong><h5><hr>
+	                            <p>{{content}}</p>
 							</td>
 						</tr>
 						
 						<tr style="text-align:left;border:hidden">
 							<td colspan="2" style="border:hidden;">
-							<button type="button" id= "btnUpdate">Update</button>
-							<button type="button" @click="$emit('close')">Cancel</button>
+                        	
 							</td>
 						</tr>
-						
-						
-						
+					
 					</table>
 				</div>
-				 
+				<div align="right">
+                <button class="btn btn-wd" @click="$emit('close')">Confirm</button>
+                </div>
 			    <footer class="modal-card-foot">
 			    </footer>
 			  </div>
@@ -303,29 +293,6 @@ function prev(){
 function next(){
 	div.className = 'trans01';
 }
-
-$(function() {
-    var count = $('#rank-list li').length;
-    var height = $('#rank-list li').height();
-
-    function step(index) {
-        $('#rank-list ol').delay(2000).animate({
-            top: -height * index,
-        }, 500, function() {
-            step((index + 1) % count);
-        });
-    }
-
-    step(1);
-});
-
-
-$(document).ready(function() {
-    $("#btnUpdate").click(function() {
-    	alert(" update ");
-        document.form1.submit();
-    });
-});
 
 // $(document).ready(function() {
 // 	$("#bootstrap-table").bootstrapTable({

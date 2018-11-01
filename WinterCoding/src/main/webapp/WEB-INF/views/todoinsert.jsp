@@ -123,15 +123,11 @@ $(document).ready(function() {
 
 </body>
 
-
-
 <!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
 	<script src="/resources/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="/resources/assets/js/jquery-ui.min.js" type="text/javascript"></script>
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
 	<script src="/resources/assets/js/demo.js"></script>
-
-
 
 </html>

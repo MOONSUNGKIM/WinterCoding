@@ -32,7 +32,8 @@ public class TodoController {
 	@RequestMapping(value = "/insertsucess", method = RequestMethod.POST)
 	public String insert(@ModelAttribute TodoVo vo) throws Exception {
 		System.out.println("=======================!! insert COntroller !!========================= ");
-		vo.setPosition(max+1);
+		max = max+1;
+		vo.setPosition(max);
 		vo.setComplete("incomplete");
 		todomapper.todoinsert(vo);
 		return "redirect:/home";
@@ -64,7 +65,6 @@ public class TodoController {
 				int newposition = TodoList.get(i).getPosition()-1;
 				TodoList.get(i).setPosition(newposition);
 				todomapper.todoupdate(TodoList.get(i));
-				max-=1;
 			}
 		}
 	
