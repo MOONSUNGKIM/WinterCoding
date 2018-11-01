@@ -12,6 +12,9 @@ public interface TodoMapper {
 	//todolist -> home  
 	public List<TodoVo> todolist() throws Exception;
 	
+	//insert
+	public void todoinsert(TodoVo vo) throws Exception;
+	
 	//update
 	public void todoupdate(TodoVo vo) throws Exception;
 	

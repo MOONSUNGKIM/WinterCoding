@@ -1,6 +1,6 @@
 package com.example.ms.Vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class TodoVo {
  private int no;

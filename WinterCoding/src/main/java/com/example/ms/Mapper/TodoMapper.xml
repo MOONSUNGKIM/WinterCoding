@@ -9,6 +9,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM todo ORDER BY position ASC
     </select>
  
+    <!-- insert -->
+    <select id="todoinsert" >
+     INSERT INTO todo (
+          title,
+          content,
+          position,
+          duedate,
+          complete
+        ) VALUES (
+          #{title},
+          #{content},
+          #{position},
+          #{duedate},
+          #{complete}
+        )
+    </select>
+    
+    
  
     <!--    update   -->
     <update id="todoupdate" >

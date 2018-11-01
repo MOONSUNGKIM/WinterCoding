@@ -18,42 +18,39 @@ public class TodoController {
 	@Autowired
 	TodoMapper todomapper;
 	
+	static List<TodoVo> TodoList;
+	static int max = 1;
+	
+	
 	@RequestMapping("/insert")
 	   public String home() {
-		   System.out.println("==test!==");
-		   return "todoinsert"; //home jsp 이동 
-	   }
+		   System.out.println("==insert!==");
+		   return "todoinsert"; //insert page jsp 이동 
+	}
+	
+	//insert
+	@RequestMapping(value = "/insertsucess", method = RequestMethod.POST)
+	public String insert(@ModelAttribute TodoVo vo) throws Exception {
+		System.out.println("=======================!! insert COntroller !!========================= ");
+		vo.setPosition(max+1);
+		vo.setComplete("incomplete");
+		todomapper.todoinsert(vo);
+		return "redirect:/home";
+	}
 	
 	
-	@RequestMapping(value="/test")  
-	public ModelAndView li(ModelAndView mav) throws Exception {
-		TodoList = todomapper.todolist(); //  상품전체리스트를 담는다.		
-		mav.addObject("TodoList", TodoList); // list를 담아    
-		mav.setViewName("test");   // 상품 전체 list를 보여주는 home.jsp로 이동 
-		                           // home.jsp에서 foreach 돌면서 해당 name에 따른 img를 띄운다
-		                           // ( 상품에 대한 이미지는 src/main/resources/static/productImg에 )
-		
-		System.out.println("=============" + TodoList.get(0).getTitle());
-		System.out.println("==TodoList -> test ==");
-		return mav;            
-	}	
 	
 	//
-	static List<TodoVo> TodoList;
-	static int max ;
+	
 	@RequestMapping(value="/home")  
 	public ModelAndView todolist(ModelAndView mav) throws Exception {		
-		TodoList = todomapper.todolist(); //  상품전체리스트를 담는다.		
+		TodoList = todomapper.todolist(); //  전체리스트를 담는다.		
 		mav.addObject("TodoList", TodoList); // list를 담아    
 		mav.setViewName("home");   // 상품 전체 list를 보여주는 home.jsp로 이동 
 		                           // home.jsp에서 foreach 돌면서 해당 name에 따른 img를 띄운다
 		                           // ( 상품에 대한 이미지는 src/main/resources/static/productImg에 )
-		
 		max = TodoList.size();
-		
-		System.out.println("=============" + TodoList.get(0).getTitle());
-		System.out.println("==TodoList -> home ==");
-		return mav;            
+		return mav;
 	}
 	
 	public void positionfunction(int noposition) throws Exception {
@@ -67,6 +64,7 @@ public class TodoController {
 				int newposition = TodoList.get(i).getPosition()-1;
 				TodoList.get(i).setPosition(newposition);
 				todomapper.todoupdate(TodoList.get(i));
+				max-=1;
 			}
 		}
 	
