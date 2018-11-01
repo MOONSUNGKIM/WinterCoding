@@ -83,9 +83,12 @@
 	                            <div class="content">
 	                                <div class="toolbar">
 	                                <h4>TODO LIST VIEW</h4>
-	                                <div align="right" ><h4></h4><a href="${pageContext.servletContext.contextPath}/insert" >
-                          						<h4> <i class="ti-plus"> NEW </i></h4>
+	                                <div align="right" >
+	                                <h4>
+	                                <a href="${pageContext.servletContext.contextPath}/insert" >
+                          					<i class="ti-plus"> NEW </i>	
                       				 </a>
+                      				 </h4>
 	                                </div>
 	                                
 	                                    <!--Here you can write extra buttons/actions for the toolbar-->
@@ -113,7 +116,7 @@
                           						 <i class="ti-user">Detail</i>
                       						 </a>
                       						 &nbsp;&nbsp;
-	                                         <a href="${pageContext.servletContext.contextPath}/home">
+	                                         <a :href="'${pageContext.servletContext.contextPath}/update/'+item.no">
                           						 <i class="ti-user">Update</i>
                       						 </a>
                       						 &nbsp;&nbsp;
@@ -228,10 +231,11 @@ const app = new Vue({
 						</tr>
 					
 					</table>
+					<div align="right">
+	                <button class="btn btn-wd" @click="$emit('close')">Confirm</button>
+	                </div>
 				</div>
-				<div align="right">
-                <button class="btn btn-wd" @click="$emit('close')">Confirm</button>
-                </div>
+				
 			    <footer class="modal-card-foot">
 			    </footer>
 			  </div>

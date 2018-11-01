@@ -15,6 +15,10 @@ public interface TodoMapper {
 	//insert
 	public void todoinsert(TodoVo vo) throws Exception;
 	
+	
+	//read(update)
+	public TodoVo read(int no) throws Exception;
+	
 	//update
 	public void todoupdate(TodoVo vo) throws Exception;
 	

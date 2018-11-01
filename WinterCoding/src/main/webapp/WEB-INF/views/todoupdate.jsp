@@ -50,6 +50,9 @@
 	<!--  Bootstrap Table Plugin    -->
 	<script src="/resources/assets/js/bootstrap-table.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js">
+</script>
+
 </head>
 
 <body>
@@ -275,38 +278,29 @@
 	                                        <div class="form-group has-success">
 	                                            <label class="col-sm-2 control-label">Title : </label>
 	                                            <div class="col-sm-10">
-	                        						<input type="text" value="Title" class="form-control"/>
+	                        						<input type="text" id= "title" name ="title" value="${vo.title}" class="form-control" />
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
 	                                    
 	                                     <fieldset>
-	                                        <div class="form-group has-success">
+	                                       <div class="form-group has-success">
 	                                            <label class="col-sm-2 control-label">Due date : </label>
 	                                            <div class="col-sm-10">
-	                        						<input type="text" value="Success" class="form-control"/>
+	                                                <input type="date" id= "duedate" name="duedate" value ="${vo.duedate}" class = "form-control">
 	                                            </div>
 	                                        </div>
 	                                    </fieldset>
 	                                    
 	                                     <fieldset>
 	                                        <div class="form-group has-success">
-	                                            <label class="col-sm-2 control-label">Input with success</label>
+	                                            <label class="col-sm-2 control-label">Content : </label>
 	                                            <div class="col-sm-10">
-	                        						<input type="text" value="Success" class="form-control"/>
-	                                            </div>
-	                                        </div>
-	                                    </fieldset>
-	                                    
-
-	                                    <fieldset>
-    	                                    <div class="form-group has-success">
-	                                            <label class="col-sm-2 control-label">Textarea</label>
-	                                            <div class="col-sm-10">
-                                                    <textarea class="form-control" placeholder="Here can be your nice text" rows="3"></textarea>
+                                                    <textarea class="form-control" id = "content" name = "content"  rows="3">${vo.content}</textarea>
 	                                            </div>
     	                                    </div>
 	                                    </fieldset>
+	                                    
 	                                </form>
 	                            </div>
 	                        </div>  <!-- end card -->

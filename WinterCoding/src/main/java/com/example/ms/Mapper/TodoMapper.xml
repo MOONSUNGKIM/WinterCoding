@@ -27,6 +27,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     
+    <!--  read(update) -->
+    <select id="read" resultType="com.example.ms.Vo.TodoVo">
+        SELECT * FROM todo
+        WHERE no = #{no}
+       </select>
+    
  
     <!--    update   -->
     <update id="todoupdate" >

@@ -29,7 +29,7 @@ public class TodoController {
 	}
 	
 	//insert
-	@RequestMapping(value = "/insertsucess", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertsuccess", method = RequestMethod.POST)
 	public String insert(@ModelAttribute TodoVo vo) throws Exception {
 		System.out.println("=======================!! insert COntroller !!========================= ");
 		max = max+1;
@@ -70,12 +70,25 @@ public class TodoController {
 	
 	}
 	
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update/{no}", method = RequestMethod.GET)
+	public ModelAndView view(@PathVariable("no") int no) throws Exception {
+		System.out.println("=====================!! update !! ====================");
+		System.out.println(no);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("todoupdate");
+		mav.addObject("vo", todomapper.read(no));
+		return mav;
+	}
+	
+	
+	
+	@RequestMapping(value = "/updatesuccess", method = RequestMethod.POST)
 	public String update(@ModelAttribute TodoVo vo) throws Exception {
 		System.out.println("=============== !! update Controller !!================== ");
 		//todomapper.movieupdate(vo);
 		return "redirect:home";
 	}
+	
 	
 	@RequestMapping(value = "/delete/{no}/{position}", method=RequestMethod.GET)
 	public String delete(@PathVariable("no") int no, @PathVariable("position") int position) throws Exception {

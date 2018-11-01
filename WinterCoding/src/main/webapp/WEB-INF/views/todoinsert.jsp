@@ -76,7 +76,7 @@ $(document).ready(function() {
 	                                <h4 class="title"> New Todo </h4>
 	                            </div>
 	                            <div class="content">
-	                   		<form name="form2" method="post" action="${pageContext.servletContext.contextPath}/insertsucess"  class="form-horizontal">
+	                   		<form name="form2" method="post" action="${pageContext.servletContext.contextPath}/insertsuccess"  class="form-horizontal">
 	                                    
 	                                        <div class="form-group has-success">
 	                                            <label class="col-sm-2 control-label">Title : </label>
