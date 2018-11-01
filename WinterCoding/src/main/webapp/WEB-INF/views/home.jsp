@@ -53,6 +53,17 @@
 	rel='stylesheet' type='text/css'>
 <link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
 
+<!--materialize js-->
+	<script type="text/javascript" src="/resources/demo/js/materialize.js"></script>
+<!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
+	
+	<script src="/resources/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Bootstrap Table Plugin    -->
+	<script src="/resources/assets/js/bootstrap-table.js"></script>
+
+
+
 </head>
 
 <style>
@@ -79,6 +90,11 @@
 	                            <div class="content">
 	                                <div class="toolbar">
 	                                <h4>TODO LIST VIEW</h4>
+	                                <div align="right" ><h4><a href="${pageContext.servletContext.contextPath}/insert" >
+                          						 <i class="ti-plus"> NEW </i>
+                      				 </a></h4>
+	                                </div>
+	                                
 	                                    <!--Here you can write extra buttons/actions for the toolbar-->
 	                                </div>
 										<table id="bootstrap-table" >
@@ -123,11 +139,7 @@
 	                    </div> <!-- end col-md-12 -->
 	                </div> <!-- end row -->
 	            </div>
-	        </div>    
-
-
-	</div>
-	</div>
+	        </div> 
 
 	</div>
 
@@ -167,11 +179,6 @@ const app = new Vue({
         </c:forEach>
    },
    methods:{
-      starColor(event) {
-         $(event.target).parent().children('span').removeClass('on');
-         $(event.target).addClass('on').prevAll('span').addClass('on');
-         return false;
-      },
       handleImageDetails(item) {
       	this.showDetailModal=true;
     	this.items.title=item.title;
@@ -180,18 +187,7 @@ const app = new Vue({
     	this.items.duedate=item.duedate;
     	
   	    bus.$emit('imageTransport', this.items);
-      },
-      scoring(event) {
-         var val=$(event.target).html();
-         var title= $(event.target).parent().parent().find('p > .movie-title').html();
-         
-         $.ajax({
-            url: '/starScore',
-            type: 'POST',
-            data:{"title":title,"rating":val}
-         });
       }
-      
    },
    
    components:{
@@ -243,8 +239,6 @@ const app = new Vue({
 							</td>
 						</tr>
 						
-						
-						
 					</table>
 				</div>
 				 
@@ -256,18 +250,6 @@ const app = new Vue({
 			</form>
 			`
 	    	,	
-	         created : function() { // bus를 통해 이벤트가 호출 시 동작할 수 있도록 listener지정  		부모의 data에 접근하고싶다면 $on과 $emit 를 통해서 접근 가능하다!!
-		        var self = this;
-				bus.$on("imageTransport", function(list) { // 모든 user의 point를 합산한다. 
-				    self.title = list.title;
-					self.content=list.content;
-					self.position = list.position;
-					self.duedate = list.duedate;
-				});
-				
-			} 
-		
-			
 
 	}
 	   
@@ -298,32 +280,8 @@ $(function() {
 
 
 </script>
+
 	<script>
-	
-var div = document.getElementById('ranking-slide');
-
-function prev(){
-	div.className = 'trans02';
-}
-
-function next(){
-	div.className = 'trans01';
-}
-
-$(function() {
-    var count = $('#rank-list li').length;
-    var height = $('#rank-list li').height();
-
-    function step(index) {
-        $('#rank-list ol').delay(2000).animate({
-            top: -height * index,
-        }, 500, function() {
-            step((index + 1) % count);
-        });
-    }
-
-    step(1);
-});
 
 
 $(document).ready(function() {
@@ -341,17 +299,7 @@ $(document).ready(function() {
 //  });
 
 </script>
-	<!--materialize js-->
-	<script type="text/javascript" src="/resources/demo/js/materialize.js"></script>
 
 </body>
-
-<!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
-	
-	<script src="/resources/assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-	<!--  Bootstrap Table Plugin    -->
-	<script src="/resources/assets/js/bootstrap-table.js"></script>
-
 
 </html>

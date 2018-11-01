@@ -8,7 +8,7 @@ public class TodoVo {
  private String content;
  private int position;
  private Date duedate;
- private int complete;
+ private String complete;
  
 public int getNo() {
 	return no;
@@ -44,10 +44,10 @@ public Date getDuedate() {
 public void setDuedate(Date duedate) {
 	this.duedate = duedate;
 }
-public int getComplete() {
+public String getComplete() {
 	return complete;
 }
-public void setComplete(int complete) {
+public void setComplete(String complete) {
 	this.complete = complete;
 }
 

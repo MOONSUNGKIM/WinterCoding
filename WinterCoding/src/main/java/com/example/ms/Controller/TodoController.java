@@ -18,13 +18,12 @@ public class TodoController {
 	@Autowired
 	TodoMapper todomapper;
 	
-//	@RequestMapping("/test")
-//	   public String home() {
-//		   System.out.println("==test!==");
-//		   
-//		   return "test"; //home jsp 이동 
-//	   }
-	//
+	@RequestMapping("/insert")
+	   public String home() {
+		   System.out.println("==test!==");
+		   return "todoinsert"; //home jsp 이동 
+	   }
+	
 	
 	@RequestMapping(value="/test")  
 	public ModelAndView li(ModelAndView mav) throws Exception {
@@ -70,7 +69,7 @@ public class TodoController {
 				todomapper.todoupdate(TodoList.get(i));
 			}
 		}
-		
+	
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
