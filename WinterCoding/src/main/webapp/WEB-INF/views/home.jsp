@@ -26,13 +26,7 @@
 <!-- Detail PopUP창을 위해 필요한 css이다. (MODAL관련 css ) -->
 <link rel="stylesheet" href="/resources/demo/css/msmodal.css" />
 
-<!-- 로딩에 필요  -->
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet">
-
 <!-- CORE CSS-->
-
 <link href="/resources/demo/css/style.css" type="text/css"
 	rel="stylesheet" media="screen,projection">
 
@@ -65,259 +59,6 @@
 [v-cloak] {
 	display: hidden;
 }
-
-.mytable, tr, th, td {
-	padding: 5px;
-	border-collapse: collapse;
-	border: 1px solid black;
-}
-
-.starR1 {
-	background:
-		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
-		no-repeat -52px 0;
-	background-size: auto 100%;
-	width: 13px;
-	height: 28px;
-	float: left;
-	text-indent: -9999px;
-	cursor: pointer;
-}
-
-.starR2 {
-	background:
-		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
-		no-repeat right 0;
-	background-size: auto 100%;
-	width: 13px;
-	height: 28px;
-	float: left;
-	text-indent: -9999px;
-	cursor: pointer;
-}
-
-.starR1.on {
-	background-position: 0 0;
-}
-
-.starR2.on {
-	background-position: -15px 0;
-}
-
-.starR.on {
-	background-position: 0 0;
-}
-
-body {
-	background: #ccc;
-}
-
-
-
-
-/*-- RANKING  --*/
-#ranking-slide {
-	position: relative;
-	width: 2000px;
-	height: 1000px;
-	margin: 50px 50px 100px 100px;
-}
-
-#ranking-slide>:not(img) {
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#ranking-slide>img {
-	cursor: pointer;
-	position: absolute;
-	top: 50%;
-	width: 45px;
-	height: 60px;
-	margin-top: -30px;
-	border-radius: 5px;
-	opacity: 0;
-	-moz-transition: all 0.2s 0s ease;
-	-webkit-transition: all 0.2s 0s ease;
-	transition: all 0.2s 0s ease;
-}
-
-#ranking-slide:hover>img, #ranking-slide>img:hover {
-	opacity: 1;
-}
-
-#ranking-slide>img:hover {
-	background: #fff;
-}
-
-#ranking-slide>.prev {
-	left: -45px;
-	border-radius: 5px 0 0 5px;
-}
-
-#ranking-slide>.next {
-	right: -45px;
-	border-radius: 0 5px 5px 0;
-}
-
-[class*="trans0"] li {
-	transition: all 0.8s 0s ease-in-out;
-}
-
-.trans01 li {
-	transform: translateX(-1063px);
-}
-
-.trans02 li {
-	transform: translateX(0);
-}
-
-#ranking-slide>img:before, #ranking-slide>img:after {
-	content: "";
-	position: absolute;
-	left: 50%;
-	display: block;
-	width: 4px;
-	height: 20px;
-	background: #ef335f;
-}
-
-#ranking-slide>.prev:after, #ranking-slide>.next:before {
-	-moz-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-webkit-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
-
-#ranking-slide>.prev:before, #ranking-slide>.next:after {
-	-moz-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-#ranking-slide>.prev:before, #ranking-slide>.next:before {
-	top: 50%;
-	margin: -4px 0 0 -4px;
-	border-radius: 0 0 32% 32%;
-}
-
-#ranking-slide>.prev:after, #ranking-slide>.next:after {
-	bottom: 50%;
-	margin: 0 0 -4px -4px;
-	border-radius: 32% 32% 0 0;
-}
-
-#ranking-slide li {
-	display: inline-block;
-	margin: 0 16px 0 0;
-	letter-spacing: 0;
-}
-
-#ranking-slide li, #ranking-slide li>img {
-	float: none;
-	/* width: 162px;
-	height: 162px; */
-	width: 180px;
-	height: 270px;
-}
-
-#ranking-slide li>img {
-	cursor: pointer;
-	position: relative;
-	display: block;
-	background: #efefef;
-	border-radius: 5px;
-	transition: all 0.2s 0s ease;
-}
-
-#ranking-slide li>img:hover {
-	background: #f69;
-}
-
-#ranking-slide {
-	/* height: 338px; */
-	height: 500px;
-	padding: 0;
-}
-
-#ranking-slide li:nth-child(n+2):nth-child(-n+5) {
-	top: -280px;
-}
-
-#ranking-slide li:nth-child(6) {
-	/* margin: 175px 16px 0 -712px; */
-	margin: 230px 16px 0 -785px;	/* 이 구간이 6~9까지의 위치조정임. */
-}
-
-#ranking-slide li:nth-child(n+10):nth-child(-n+15) {
-	top: -230px;
-	left: 0;
-}
-
-#ranking-slide li:nth-child(n+7):nth-child(-n+9), #ranking-slide li:nth-child(12n+17),
-	#ranking-slide li:nth-child(12n+18), #ranking-slide li:nth-child(12n+19),
-	#ranking-slide li:nth-child(12n+20), #ranking-slide li:nth-child(12n+21)
-	{
-	margin: 175px 16px 0 0;
-}
-
-#ranking-slide li:nth-child(12n+22), #ranking-slide li:nth-child(12n+23),
-	#ranking-slide li:nth-child(12n+24), #ranking-slide li:nth-child(12n+25),
-	#ranking-slide li:nth-child(12n+26), #ranking-slide li:nth-child(12n+27)
-	{
-	top: -175px;
-}
-
-#ranking-slide li:nth-child(12n+16) {
-	margin: 175px 16px 0 -1068px;
-}
-
-#ranking-slide li:nth-of-type(12n+4), #ranking-slide li:nth-of-type(12n+8)
-	{
-	clear: none;
-}
-
-#ranking-slide li:first-child, #ranking-slide li:first-child>img {
-	/* width: 336px;
-	height: 335px; */
-	width: 400px;
-	height: 550px;
-	margin: 0 16px 0 0;
-}
-
-#ranking-slide {
-	counter-reset: number;
-}
-
-#ranking-slide li {
-	position: relative;
-}
-
-#ranking-slide li:before {
-	content: counter(number);
-	counter-increment: number;
-	position: absolute;
-	top: 7px;
-	left: 7px;
-	display: inline-block;
-	width: 22px;
-	height: 22px;
-	line-height: 22px;
-	color: #fff;
-	background: #f69;
-	font-size: 1.2rem;
-	text-align: center;
-	z-index: 1;
-}
-
-#ranking-slide  li:first-child:before {
-	width: 25px;
-	height: 25px;
-	line-height: 25px;
-	font-size: 1.5rem;
-}
-
 </style>
 
 <body>
@@ -325,18 +66,11 @@ body {
 
 	<div id="todo" v-cloak>
 	
-		<!-- Start Page Loading -->
-		<div id="loader-wrapper">
-			<div id="loader"></div>
-			<div class="loader-section section-left"></div>
-			<div class="loader-section section-right"></div>
-		</div>
 		<detail modal-class="media-manager-details" v-show="showDetailModal"
 			@close="showDetailModal=false">
 		<p>Here is SLOT AREA</p>
 		</detail>
 		
-
 		<div class="content">
 	            <div class="container-fluid">
 	                <div class="row">
@@ -347,26 +81,40 @@ body {
 	                                <h4>TODO LIST VIEW</h4>
 	                                    <!--Here you can write extra buttons/actions for the toolbar-->
 	                                </div>
-										<table id="bootstrap-table" class="table">
+										<table id="bootstrap-table" >
 										 
 										 <thead>
 	                                        <th data-field="state" data-checkbox="true"></th>
 	                                        <th data-field="position" data-sortable="true"> Position</th>
 	                                        <th data-field="title">Title</th>
 	                                    	<th data-field="duedate" data-sortable="true">Duedate</th>
+	                                    	<th data-field="actions" >State</th>
 	                                    	<th data-field="actions" class="td-actions text-right" >Actions</th>
 	                                    </thead>
-										 <tbody>
-										 <tr v-for="(item,index) in items" @click="handleImageDetails(item)">
+	                                    
+										 
+										 <tr v-for="(item,index) in items">
 				   							<td></td>
-				   							<td>{{item.position}}</td>
-	                                        <td>{{item.title}}</td>
-	                                        <td>{{item.duedate}}</td>
-	                                        <td></td>
+				   							<td @click="handleImageDetails(item)">{{item.position}}</td>
+	                                        <td @click="handleImageDetails(item)">{{item.title}}</td>
+	                                        <td @click="handleImageDetails(item)">{{item.duedate}}</td>
+	                                        <td>{{item.complete}}</td>
+	                                        <td >
+	                                        <a @click="handleImageDetails(item)">
+                          						 <i class="ti-user">Detail</i>
+                      						 </a>
+                      						 &nbsp;&nbsp;
+	                                         <a href="${pageContext.servletContext.contextPath}/home">
+                          						 <i class="ti-user">Update</i>
+                      						 </a>
+                      						 &nbsp;&nbsp;
+	                                        <a :href="'${pageContext.servletContext.contextPath}/delete/'+item.no+'/'+item.position">
+                          						 <i class="ti-user">Delete</i>
+                      						 </a>
+	                                         
+	                                         </td>
 										 </tr>
 						
-										 </tbody>
-									 
 										 </table>
 							
 										 
@@ -409,9 +157,11 @@ const app = new Vue({
     mounted: function() {
     	 <c:forEach var="vo" items="${TodoList}">// controller에서 List를 받아 foreach   
         this.items = this.items.concat ({
-       	title : "${vo.title}",
+       	no : "${vo.no}",
+        title : "${vo.title}",
        	position : "${vo.position}",
        	content : "${vo.content}",
+       	complete : "${vo.complete}",
        	duedate : "${vo.duedate}"
         });
         </c:forEach>
@@ -448,6 +198,7 @@ const app = new Vue({
 	   /* 'detail': child */
 	   detail: {
 	    	template: `
+	    	
 	    	<form name="form1" method="post" action="${pageContext.servletContext.contextPath}/home">
 			<div class="modal is-active">
 			  <div class="modal-background" style="bottom:0; left:0;position:absolute;right:0;top:0;background-color:rgba(10,10,10,.86)" @click="$emit('close')"></div>
@@ -501,6 +252,7 @@ const app = new Vue({
 			    </footer>
 			  </div>
 			</div>
+			
 			</form>
 			`
 	    	,	
@@ -524,9 +276,6 @@ const app = new Vue({
 })
 
 
-
-
-
 $(function() {
 	  $('.bt_up').click(function() {
 	    var n = $('.bt_up').index(this);
@@ -548,12 +297,8 @@ $(function() {
 	})
 
 
- 
-
 </script>
 	<script>
-	
-	
 	
 var div = document.getElementById('ranking-slide');
 
@@ -588,24 +333,16 @@ $(document).ready(function() {
     });
 });
 
-
-
-// $('#bootstrap-table').ready(function(){
-// 	$('#bootstrap-table').bootstrapTable({
+// $(document).ready(function() {
+// 	$("#bootstrap-table").bootstrapTable({
 //  pagination: true,
 //  pageSize: 2,
 //  });
 //  });
 
-
 </script>
-
 	<!--materialize js-->
 	<script type="text/javascript" src="/resources/demo/js/materialize.js"></script>
-
-	<!--  이거 없음 로딩 계속 지속됨  -->
-	<!--plugins.js - Some Specific JS codes for Plugin Settings-->
-	<script type="text/javascript" src="/resources/demo/js/plugins.js"></script>
 
 </body>
 

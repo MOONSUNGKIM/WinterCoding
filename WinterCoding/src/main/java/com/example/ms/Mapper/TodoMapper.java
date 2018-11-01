@@ -15,4 +15,7 @@ public interface TodoMapper {
 	//update
 	public void todoupdate(TodoVo vo) throws Exception;
 	
+	// delete
+	public void tododelete(int no) throws Exception;
+	
 }

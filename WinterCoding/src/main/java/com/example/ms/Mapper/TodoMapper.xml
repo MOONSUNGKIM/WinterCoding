@@ -6,8 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- todolist -->
     <select id="todolist" resultType="com.example.ms.Vo.TodoVo">
-        SELECT * FROM todo
+        SELECT * FROM todo ORDER BY position ASC
     </select>
+ 
  
     <!--    update   -->
     <update id="todoupdate" >
@@ -19,5 +20,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       complete = #{complete}
       WHERE no = #{no}
     </update>
- 
+    
+    <!-- SORT -->
+    
+    <!-- select -->
+    <select id="todoposition" resultType="com.example.ms.Vo.TodoVo">
+        SELECT * FROM todo where no = #{no}
+    </select>
+    
+    
+    <!--    delete   -->
+    <delete id="tododelete">
+      DELETE FROM todo
+      WHERE no = #{no}
+    </delete>
+    
+    
  </mapper>

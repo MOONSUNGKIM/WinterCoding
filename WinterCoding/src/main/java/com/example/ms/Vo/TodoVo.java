@@ -9,7 +9,6 @@ public class TodoVo {
  private int position;
  private Date duedate;
  private int complete;
- private int max;
  
 public int getNo() {
 	return no;
@@ -52,13 +51,6 @@ public void setComplete(int complete) {
 	this.complete = complete;
 }
 
-public int getMax() {
-	return max;
-}
-
-public void setMax(int max) {
-	this.max = max;
-}
 
 
 
