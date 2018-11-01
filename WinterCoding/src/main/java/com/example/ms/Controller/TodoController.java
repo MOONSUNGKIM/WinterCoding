@@ -22,6 +22,9 @@ public class TodoController {
 	static int max = 1;
 	
 	
+	
+	
+	
 	@RequestMapping("/insert")
 	   public String home() {
 		   System.out.println("==insert!==");
@@ -135,6 +138,13 @@ public class TodoController {
 		//
 		positionfunction(position);
 		return "redirect:/home";
+	}
+	
+	
+	@RequestMapping("/complete")
+	   public String complete() {
+		   System.out.println("==complete!==");
+		   return "todocompletelist"; //insert page jsp 이동 
 	}
 
 

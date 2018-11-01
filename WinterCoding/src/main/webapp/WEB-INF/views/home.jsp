@@ -57,6 +57,17 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js">
 </script>
 
+<script>
+$(document).ready(function() {
+    $("#btnComplete").click(function() {
+    	alert(" Movie update move");
+    	
+    });
+});
+
+</script>
+
+
 </head>
 
 <style>
@@ -123,10 +134,11 @@
 	                                        <a :href="'${pageContext.servletContext.contextPath}/delete/'+item.no+'/'+item.position">
                           						 <i class="ti-user">Delete</i>
                       						 </a>
-	                                         
-	                                         
-	                                         
-	                                         
+                      						 &nbsp;&nbsp;
+	                                          <a href="${pageContext.servletContext.contextPath}/complete">
+                          						  <i class="ti-panel">Complete</i>
+                      						 </a>	                                         
+
 	                                         </td>
 										 </tr>
 						
