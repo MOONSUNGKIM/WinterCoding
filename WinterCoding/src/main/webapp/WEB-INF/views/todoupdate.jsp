@@ -53,6 +53,17 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js">
 </script>
 
+
+<script>
+$(document).ready(function() {
+    $("#btnUpdate").click(function() {
+    	alert(" update");
+        document.form2.submit();
+    });
+});
+
+</script>
+
 </head>
 
 <body>
@@ -138,7 +149,9 @@
 	                                <h4 class="title">Form Elements</h4>
 	                            </div>
 	                            <div class="content">
-	                                <form method="get" action="/" class="form-horizontal">
+	                              <form name="form2" method="post" action="${pageContext.servletContext.contextPath}/updatesuccess"  class="form-horizontal">
+	                              <input type="hidden" name="no" id= "no" value="${vo.no}">
+	                              <input type="hidden" name="preposition" id= "preposition" value="${vo.position}">
 	                                    <fieldset>
 	                                        <div class="form-group">
 	                                            <label class="col-sm-2 control-label">With help</label>
@@ -283,6 +296,19 @@
 	                                        </div>
 	                                    </fieldset>
 	                                    
+	                                    <fieldset>
+	                                        <div class="form-group has-success">
+	                                        <label class="col-sm-2 control-label">Position : </label>
+	                                        <div class="col-sm-10">
+	                                       <select id = "position" name = "position">
+	                                       <c:forEach var="position" begin="1" end="${vo.max}">
+      										<option >${position}</option>
+      										</c:forEach>
+   										   </select>
+   										   </div>
+	                                    </div>
+	                                    </fieldset>
+	                                    
 	                                     <fieldset>
 	                                       <div class="form-group has-success">
 	                                            <label class="col-sm-2 control-label">Due date : </label>
@@ -300,6 +326,15 @@
 	                                            </div>
     	                                    </div>
 	                                    </fieldset>
+	                                    
+	                                    <div align="right">
+	                                      <button type="button" id ="btnUpdate" class="btn btn-wd btn-success">
+	                                            <span class="btn-label">
+	                                                <i class="fa fa-check"></i>
+	                                            </span>
+	                                            Update
+	                                      </button>
+	                                    </div>
 	                                    
 	                                </form>
 	                            </div>

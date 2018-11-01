@@ -69,6 +69,36 @@ public class TodoController {
 		}
 	
 	}
+	public void positionfunction2(int preposition, int position) throws Exception {
+		
+		// 기존 우선순위보다 우선순위를 앞으로 할경우  
+		
+		if(preposition > position) {
+			for(int i =0; i<TodoList.size(); i++) {
+				int po = TodoList.get(i).getPosition();
+                if(po >=preposition) break;
+				if(po >=position && po<preposition){
+					int newposition = TodoList.get(i).getPosition()+1;
+					TodoList.get(i).setPosition(newposition);
+					todomapper.todoupdate(TodoList.get(i));
+				}
+			}
+		}
+		// 기존 우선순위보다 우선순위를 뒤로 할경우 
+		else if(preposition < position){
+			for(int i =0; i<TodoList.size(); i++) {
+				int po = TodoList.get(i).getPosition();
+                if(po >position) break;
+				if(po >preposition && po <=position){
+					int newposition = TodoList.get(i).getPosition()-1;
+					TodoList.get(i).setPosition(newposition);
+					todomapper.todoupdate(TodoList.get(i));
+				}
+			}
+
+		}
+	}
+	
 	
 	@RequestMapping(value = "/update/{no}", method = RequestMethod.GET)
 	public ModelAndView view(@PathVariable("no") int no) throws Exception {
@@ -76,7 +106,9 @@ public class TodoController {
 		System.out.println(no);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("todoupdate");
-		mav.addObject("vo", todomapper.read(no));
+		TodoVo vo = todomapper.read(no);
+		vo.setMax(max);
+		mav.addObject("vo", vo);
 		return mav;
 	}
 	
@@ -85,7 +117,13 @@ public class TodoController {
 	@RequestMapping(value = "/updatesuccess", method = RequestMethod.POST)
 	public String update(@ModelAttribute TodoVo vo) throws Exception {
 		System.out.println("=============== !! update Controller !!================== ");
-		//todomapper.movieupdate(vo);
+		System.out.println(vo.getPosition());
+		vo.setComplete("incomplete");
+		todomapper.todoupdate(vo);
+		
+		// 해당 번호 앞뒤로 밀고당기고 
+		positionfunction2(vo.getPreposition(),vo.getPosition());
+		
 		return "redirect:home";
 	}
 	

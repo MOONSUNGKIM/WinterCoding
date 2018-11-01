@@ -124,6 +124,9 @@
                           						 <i class="ti-user">Delete</i>
                       						 </a>
 	                                         
+	                                         
+	                                         
+	                                         
 	                                         </td>
 										 </tr>
 						

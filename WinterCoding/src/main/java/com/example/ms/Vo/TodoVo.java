@@ -9,7 +9,8 @@ public class TodoVo {
  private int position;
  private Date duedate;
  private String complete;
- 
+ private int max;
+ private int preposition;
 public int getNo() {
 	return no;
 }
@@ -51,7 +52,21 @@ public void setComplete(String complete) {
 	this.complete = complete;
 }
 
+public int getMax() {
+	return max;
+}
 
+public void setMax(int max) {
+	this.max = max;
+}
+
+public int getPreposition() {
+	return preposition;
+}
+
+public void setPreposition(int preposition) {
+	this.preposition = preposition;
+}
 
 
 }
