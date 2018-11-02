@@ -9,8 +9,12 @@ import com.example.ms.Vo.TodoVo;
 @Repository("com.example.ms.Mapper.TodoMapper")
 public interface TodoMapper {
 	
-	//todolist -> home  
+	//todolist -> all  
 	public List<TodoVo> todolist() throws Exception;
+	
+	//todolist -> incomplete or complete
+	public List<TodoVo> todoliststate(String complete) throws Exception;
+	
 	
 	//insert
 	public void todoinsert(TodoVo vo) throws Exception;
@@ -23,5 +27,10 @@ public interface TodoMapper {
 	
 	// delete
 	public void tododelete(int no) throws Exception;
+	
+	
+	//incomlete -> complete 
+	
+	public void todostateupdate(TodoVo vo) throws Exception;
 	
 }

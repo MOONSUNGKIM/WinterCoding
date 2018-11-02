@@ -51,7 +51,6 @@
                    </div>
                    <div class="info">
                        <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                          <%=session.getAttribute("session_id") %>
                            <b class="caret"></b>
                        </a>
                        <div class="collapse" id="collapseExample">
@@ -65,25 +64,18 @@
                <ul class="nav">
         
                    <li>
-                  <a href="${pageContext.servletContext.contextPath}/mypurchaseInfo">
+                  <a href="${pageContext.servletContext.contextPath}/home">
                            <i class="ti-user"></i>
                            <p>
                             Todo List
                               <b class="caret"></b>
                            </p>
                        </a>
-<!--                        <div class="collapse" id="formsExamples"> -->
-<!--                            <ul class="nav"> -->
-<!--                         <li><a href="/resources/examples/forms/regular.html">Regular Forms</a></li> -->
-<!--                         <li><a href="/resources/examples/forms/extended.html">Extended Forms</a></li> -->
-<!--                         <li><a href="/resources/examples/forms/validation.html">Validation Forms</a></li> -->
-<!--                                <li><a href="/resources/examples/forms/wizard.html">Wizard</a></li> -->
-<!--                            </ul> -->
-<!--                        </div> -->
+
                    </li>
                    
                    <li>
-                  <a href="${pageContext.servletContext.contextPath}/favorite">
+                  <a href="${pageContext.servletContext.contextPath}/completedlist">
                            <i class="ti-user"></i>
                            <p>
                           Todo Complete List

@@ -20,11 +20,7 @@ public class TodoController {
 	
 	static List<TodoVo> TodoList;
 	static int max = 1;
-	
-	
-	
-	
-	
+
 	@RequestMapping("/insert")
 	   public String home() {
 		   System.out.println("==insert!==");
@@ -42,13 +38,11 @@ public class TodoController {
 		return "redirect:/home";
 	}
 	
-	
-	
-	//
+	//select incomplete
 	
 	@RequestMapping(value="/home")  
-	public ModelAndView todolist(ModelAndView mav) throws Exception {		
-		TodoList = todomapper.todolist(); //  전체리스트를 담는다.		
+	public ModelAndView todolistincomplete(ModelAndView mav) throws Exception {		
+		TodoList = todomapper.todoliststate("incomplete"); //  incomplete 상태인 것을 전체리스트를 담는다.		
 		mav.addObject("TodoList", TodoList); // list를 담아    
 		mav.setViewName("home");   // 상품 전체 list를 보여주는 home.jsp로 이동 
 		                           // home.jsp에서 foreach 돌면서 해당 name에 따른 img를 띄운다
@@ -56,13 +50,26 @@ public class TodoController {
 		max = TodoList.size();
 		return mav;
 	}
+
+	//select complete
+
+	@RequestMapping(value="/completedlist")
+	public ModelAndView todolistcomplete(ModelAndView mav) throws Exception {		
+		TodoList = todomapper.todoliststate("complete"); //  complete 상태인 것을 전체리스트를 담는다.		
+		mav.addObject("TodoList", TodoList); // list를 담아    
+		mav.setViewName("todocompletelist");   // 상품 전체 list를 보여주는 home.jsp로 이동 
+		                           // home.jsp에서 foreach 돌면서 해당 name에 따른 img를 띄운다
+		                           // ( 상품에 대한 이미지는 src/main/resources/static/productImg에 )		
+		return mav;
+	}
+
 	
 	public void positionfunction(int noposition) throws Exception {
 		//삭제누르면
 		//또는 포지션 변경시
 	    // 그 뒤에 있는 포지션 앞으로 하나씩 다 땡겨져야한다.
 		System.out.println("======="+noposition+"======");
-		TodoList = todomapper.todolist(); // 
+		TodoList = todomapper.todoliststate("incomplete"); // 
 		for(int i =0; i<TodoList.size(); i++){
 			if(TodoList.get(i).getPosition() >noposition){
 				int newposition = TodoList.get(i).getPosition()-1;
@@ -72,12 +79,17 @@ public class TodoController {
 		}
 	
 	}
-	public void positionfunction2(int preposition, int position) throws Exception {
+	
+	public void positionfunction2(int no,int preposition, int position) throws Exception {
+		
+		TodoList = todomapper.todoliststate("incomplete"); // 
 		
 		// 기존 우선순위보다 우선순위를 앞으로 할경우  
 		
 		if(preposition > position) {
 			for(int i =0; i<TodoList.size(); i++) {
+				//자기 자신은 제외 
+				if(TodoList.get(i).getNo() == no) continue;
 				int po = TodoList.get(i).getPosition();
                 if(po >=preposition) break;
 				if(po >=position && po<preposition){
@@ -90,6 +102,7 @@ public class TodoController {
 		// 기존 우선순위보다 우선순위를 뒤로 할경우 
 		else if(preposition < position){
 			for(int i =0; i<TodoList.size(); i++) {
+				if(TodoList.get(i).getNo() == no) continue;
 				int po = TodoList.get(i).getPosition();
                 if(po >position) break;
 				if(po >preposition && po <=position){
@@ -102,6 +115,8 @@ public class TodoController {
 		}
 	}
 	
+	
+	//update
 	
 	@RequestMapping(value = "/update/{no}", method = RequestMethod.GET)
 	public ModelAndView view(@PathVariable("no") int no) throws Exception {
@@ -116,7 +131,6 @@ public class TodoController {
 	}
 	
 	
-	
 	@RequestMapping(value = "/updatesuccess", method = RequestMethod.POST)
 	public String update(@ModelAttribute TodoVo vo) throws Exception {
 		System.out.println("=============== !! update Controller !!================== ");
@@ -125,27 +139,50 @@ public class TodoController {
 		todomapper.todoupdate(vo);
 		
 		// 해당 번호 앞뒤로 밀고당기고 
-		positionfunction2(vo.getPreposition(),vo.getPosition());
+		positionfunction2(vo.getNo(),vo.getPreposition(),vo.getPosition());
 		
 		return "redirect:home";
 	}
 	
+	//incomplete todo delete
 	
 	@RequestMapping(value = "/delete/{no}/{position}", method=RequestMethod.GET)
 	public String delete(@PathVariable("no") int no, @PathVariable("position") int position) throws Exception {
 		System.out.println("================!! delete Controller !! ==================");
 		todomapper.tododelete(no);
 		//
+		
+		
 		positionfunction(position);
 		return "redirect:/home";
 	}
 	
-	
-	@RequestMapping("/complete")
-	   public String complete() {
-		   System.out.println("==complete!==");
-		   return "todocompletelist"; //insert page jsp 이동 
+	//completed todo delete
+	@RequestMapping(value = "/completedtododelete/{no}", method=RequestMethod.GET)
+	public String delete(@PathVariable("no") int no) throws Exception {
+		System.out.println("================!! delete Controller !! ==================");
+		todomapper.tododelete(no);
+		return "redirect:/completedlist";
 	}
-
+	
+	
+	
+	
+	//incomplete -> complete 
+	
+	@RequestMapping(value = "/completechange/{no}/{position}", method = RequestMethod.GET)
+	public String completeupdate(@PathVariable("no") int no,@PathVariable("position") int position) throws Exception {
+		TodoVo vo = new TodoVo();
+		vo.setNo(no);
+		vo.setPosition(0); // complete 상태로 변경하니 우선순위 0 으로 변경  
+		vo.setComplete("complete");
+		todomapper.todostateupdate(vo);
+		
+		System.out.println("=============== !! complete change !!================== ");
+		
+		positionfunction(position);
+		return "redirect:/completedlist";
+	}
+	
 
 }

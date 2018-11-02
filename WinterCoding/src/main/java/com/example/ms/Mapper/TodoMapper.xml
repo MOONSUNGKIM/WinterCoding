@@ -9,6 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT * FROM todo ORDER BY position ASC
     </select>
  
+ <!-- todolist(state) -->
+ 
+ <select id="todoliststate" resultType="com.example.ms.Vo.TodoVo">
+        SELECT * FROM todo WHERE complete = #{complete} ORDER BY position ASC
+    </select>
+ 
+ 
     <!-- insert -->
     <select id="todoinsert" >
      INSERT INTO todo (
@@ -58,6 +65,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       DELETE FROM todo
       WHERE no = #{no}
     </delete>
+    
+       <!--    update   -->
+    <update id="todostateupdate" >
+      UPDATE todo SET
+      complete = #{complete},
+      position = #{position}
+      WHERE no = #{no}
+    </update>
     
     
  </mapper>
