@@ -21,32 +21,14 @@ public class TodoController {
 	static List<TodoVo> TodoList;
 	static int max = 1;
 
-	@RequestMapping("/insert")
-	   public String home() {
-		   System.out.println("==insert!==");
-		   return "todoinsert"; //insert page jsp 이동 
-	}
-	
-	//insert
-	@RequestMapping(value = "/insertsuccess", method = RequestMethod.POST)
-	public String insert(@ModelAttribute TodoVo vo) throws Exception {
-		System.out.println("=======================!! insert COntroller !!========================= ");
-		max = max+1;
-		vo.setPosition(max);
-		vo.setComplete("incomplete");
-		todomapper.todoinsert(vo);
-		return "redirect:/home";
-	}
 	
 	//select incomplete
 	
 	@RequestMapping(value="/home")  
 	public ModelAndView todolistincomplete(ModelAndView mav) throws Exception {		
-		TodoList = todomapper.todoliststate("incomplete"); //  incomplete 상태인 것을 전체리스트를 담는다.		
-		mav.addObject("TodoList", TodoList); // list를 담아    
-		mav.setViewName("home");   // 상품 전체 list를 보여주는 home.jsp로 이동 
-		                           // home.jsp에서 foreach 돌면서 해당 name에 따른 img를 띄운다
-		                           // ( 상품에 대한 이미지는 src/main/resources/static/productImg에 )
+		TodoList = todomapper.todoliststate("incomplete");		
+		mav.addObject("TodoList", TodoList);     
+		mav.setViewName("home");
 		max = TodoList.size();
 		return mav;
 	}
@@ -55,64 +37,26 @@ public class TodoController {
 
 	@RequestMapping(value="/completedlist")
 	public ModelAndView todolistcomplete(ModelAndView mav) throws Exception {		
-		TodoList = todomapper.todoliststate("complete"); //  complete 상태인 것을 전체리스트를 담는다.		
-		mav.addObject("TodoList", TodoList); // list를 담아    
-		mav.setViewName("todocompletelist");   // 상품 전체 list를 보여주는 home.jsp로 이동 
-		                           // home.jsp에서 foreach 돌면서 해당 name에 따른 img를 띄운다
-		                           // ( 상품에 대한 이미지는 src/main/resources/static/productImg에 )		
+		TodoList = todomapper.todoliststate("complete");		
+		mav.addObject("TodoList", TodoList);     
+		mav.setViewName("todocompletelist"); 		
 		return mav;
 	}
-
 	
-	public void positionfunction(int noposition) throws Exception {
-		//삭제누르면
-		//또는 포지션 변경시
-	    // 그 뒤에 있는 포지션 앞으로 하나씩 다 땡겨져야한다.
-		System.out.println("======="+noposition+"======");
-		TodoList = todomapper.todoliststate("incomplete"); // 
-		for(int i =0; i<TodoList.size(); i++){
-			if(TodoList.get(i).getPosition() >noposition){
-				int newposition = TodoList.get(i).getPosition()-1;
-				TodoList.get(i).setPosition(newposition);
-				todomapper.todoupdate(TodoList.get(i));
-			}
-		}
-	
+	//insert
+	@RequestMapping("/insert")
+	   public String home() {
+		   System.out.println("==insert!==");
+		   return "todoinsert"; //insert page jsp 이동 
 	}
-	
-	public void positionfunction2(int no,int preposition, int position) throws Exception {
-		
-		TodoList = todomapper.todoliststate("incomplete"); // 
-		
-		// 기존 우선순위보다 우선순위를 앞으로 할경우  
-		
-		if(preposition > position) {
-			for(int i =0; i<TodoList.size(); i++) {
-				//자기 자신은 제외 
-				if(TodoList.get(i).getNo() == no) continue;
-				int po = TodoList.get(i).getPosition();
-                if(po >=preposition) break;
-				if(po >=position && po<preposition){
-					int newposition = TodoList.get(i).getPosition()+1;
-					TodoList.get(i).setPosition(newposition);
-					todomapper.todoupdate(TodoList.get(i));
-				}
-			}
-		}
-		// 기존 우선순위보다 우선순위를 뒤로 할경우 
-		else if(preposition < position){
-			for(int i =0; i<TodoList.size(); i++) {
-				if(TodoList.get(i).getNo() == no) continue;
-				int po = TodoList.get(i).getPosition();
-                if(po >position) break;
-				if(po >preposition && po <=position){
-					int newposition = TodoList.get(i).getPosition()-1;
-					TodoList.get(i).setPosition(newposition);
-					todomapper.todoupdate(TodoList.get(i));
-				}
-			}
-
-		}
+	@RequestMapping(value = "/insertsuccess", method = RequestMethod.POST)
+	public String insert(@ModelAttribute TodoVo vo) throws Exception {
+		System.out.println("=======================!! insert COntroller !!========================= ");
+		max = max+1;
+		vo.setPosition(max);
+		vo.setComplete("incomplete");
+		todomapper.todoinsert(vo);
+		return "redirect:/home";
 	}
 	
 	
@@ -151,8 +95,6 @@ public class TodoController {
 		System.out.println("================!! delete Controller !! ==================");
 		todomapper.tododelete(no);
 		//
-		
-		
 		positionfunction(position);
 		return "redirect:/home";
 	}
@@ -164,8 +106,6 @@ public class TodoController {
 		todomapper.tododelete(no);
 		return "redirect:/completedlist";
 	}
-	
-	
 	
 	
 	//incomplete -> complete 
@@ -185,4 +125,58 @@ public class TodoController {
 	}
 	
 
+	
+	//삭제시 position 재 배열 함수	
+	public void positionfunction(int noposition) throws Exception {
+		//삭제 시
+	    // 포지션 앞으로 하나씩 다 땡겨져야한다.
+		System.out.println("======="+noposition+"======");
+		TodoList = todomapper.todoliststate("incomplete"); // 
+		for(int i =0; i<TodoList.size(); i++){
+			if(TodoList.get(i).getPosition() >noposition){
+				int newposition = TodoList.get(i).getPosition()-1;
+				TodoList.get(i).setPosition(newposition);
+				todomapper.todoupdate(TodoList.get(i));
+			}
+		}
+	}
+	
+	//postion 변경시 position 재 배열 함수 
+	public void positionfunction2(int no,int preposition, int position) throws Exception {
+		
+		TodoList = todomapper.todoliststate("incomplete"); // 
+		
+		// 기존 우선순위보다 우선순위를 앞으로 할경우  
+		
+		if(preposition > position) {
+			for(int i =0; i<TodoList.size(); i++) {
+				//자기 자신은 제외 
+				if(TodoList.get(i).getNo() == no) continue;
+				int po = TodoList.get(i).getPosition();
+                if(po >=preposition) break;
+				if(po >=position && po<preposition){
+					int newposition = TodoList.get(i).getPosition()+1;
+					TodoList.get(i).setPosition(newposition);
+					todomapper.todoupdate(TodoList.get(i));
+				}
+			}
+		}
+		// 기존 우선순위보다 우선순위를 뒤로 할경우 
+		else if(preposition < position){
+			for(int i =0; i<TodoList.size(); i++) {
+				if(TodoList.get(i).getNo() == no) continue;
+				int po = TodoList.get(i).getPosition();
+                if(po >position) break;
+				if(po >preposition && po <=position){
+					int newposition = TodoList.get(i).getPosition()-1;
+					TodoList.get(i).setPosition(newposition);
+					todomapper.todoupdate(TodoList.get(i));
+				}
+			}
+
+		}
+	}
+	
+	
+	
 }
