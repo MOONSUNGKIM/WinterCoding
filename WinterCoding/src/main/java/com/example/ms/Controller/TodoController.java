@@ -66,6 +66,14 @@ public class TodoController {
 		
 		Todo.put("TodoListKey",TodoList);
 		Todo.put("finisedTodoListKey", finisedTodoList);
+	
+		
+		
+		ArrayList<TodoVo> al = (ArrayList<TodoVo>) Todo.get("finisedTodoListKey");
+			for(int i=0; i<al.size(); i++){
+			 System.out.println(al.get(i).getPosition());
+			}
+		
 		
 		 System.out.println(Todo.size());
 	

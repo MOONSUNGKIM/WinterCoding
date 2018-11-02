@@ -41,21 +41,8 @@
 	rel='stylesheet' type='text/css'>
 <link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<% int idx = 0; %>
 
-<!-- finished Due date Alarm function -->
-
- <script langauge="javascript">
-    window.onload=function() {
-	    // 페이지가 로딩된 후 실행
-	    var count = ${Todo.finisedTodoListKey.size()};
-	    for(var i =0; i<count; i ++) {
-// 	    demo.showNotification('top','center',${Todo.finisedTodoListKey.get(i).position});
-	    demo.showNotification('top','center',i);
-       }
-	}
-  </script>
-
-<!--  -->
 
 </head>
 <style>
@@ -65,6 +52,21 @@
 </style>
 
 <body>
+<!-- finished Due date Alarm function -->
+
+ <script type="text/javascript">
+ //페이지가 로딩된 후 실행 
+    window.onload=function() {
+    	
+    	 <c:forEach var="vo" items="${Todo.finisedTodoListKey}">
+    	    demo.showNotification('top','center', ${vo.position});
+		 </c:forEach>
+	}
+    
+  </script>
+<!--  -->
+
+
 	<%@include file="header.jsp"%>
 
 	<div id="todo" v-cloak>
@@ -136,15 +138,6 @@
 				<!-- end row -->
 			</div>
 		</div>
-
-							<div class="places-buttons">
-	                            <div class="row">
-	                                <div class="col-md-3">
-	                                    <button class="btn btn-default btn-block" onclick="demo.showNotification('top','center',1)">Top Center</button>
-	                                </div>
-	                            </div>
-	                        </div>
-
 
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
