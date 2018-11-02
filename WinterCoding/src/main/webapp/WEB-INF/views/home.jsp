@@ -40,8 +40,22 @@
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
 <link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js">
-</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<!-- finished Due date Alarm function -->
+
+ <script langauge="javascript">
+    window.onload=function() {
+	    // 페이지가 로딩된 후 실행
+	    var count = ${Todo.finisedTodoListKey.size()};
+	    for(var i =0; i<count; i ++) {
+// 	    demo.showNotification('top','center',${Todo.finisedTodoListKey.get(i).position});
+	    demo.showNotification('top','center',i);
+       }
+	}
+  </script>
+
+<!--  -->
 
 </head>
 <style>
@@ -57,7 +71,7 @@
 
 		<detail modal-class="media-manager-details" v-show="showDetailModal"
 			@close="showDetailModal=false">
-		<p>Here is SLOT AREA</p>
+		<p></p>
 		</detail>
 
 		<div class="content">
@@ -95,23 +109,23 @@
 										<td @click="handleImageDetails(item)">{{item.position}}</td>
 										<td @click="handleImageDetails(item)">{{item.title}}</td>
 										<td @click="handleImageDetails(item)">{{item.duedate}}</td>
-										<td>{{item.complete}}</td>
+										<td @click="handleImageDetails(item)">{{item.complete}}</td>
 										<td><a @click="handleImageDetails(item)"> <i
-												class="ti-user">Detail</i>
+												class="ti-clipboard">&nbsp;Detail</i>
 										</a> &nbsp;&nbsp; <a
 											:href="'${pageContext.servletContext.contextPath}/update/'+item.no">
-												<i class="ti-user">Update</i>
+												<i class="ti-list">&nbsp;Update</i>
 										</a> &nbsp;&nbsp; <a
 											:href="'${pageContext.servletContext.contextPath}/delete/'+item.no+'/'+item.position">
-												<i class="ti-user">Delete</i>
+												<i class="ti-minus">&nbsp;Delete</i>
 										</a> &nbsp;&nbsp; <a
 											:href="'${pageContext.servletContext.contextPath}/completechange/'+item.no+'/'+item.position">
-												<i class="ti-panel">Complete</i>
+												<i class="ti-panel">&nbsp;Complete</i>
 										</a></td>
 									</tr>
 
 								</table>
-
+                              		
 
 							</div>
 						</div>
@@ -122,6 +136,14 @@
 				<!-- end row -->
 			</div>
 		</div>
+
+							<div class="places-buttons">
+	                            <div class="row">
+	                                <div class="col-md-3">
+	                                    <button class="btn btn-default btn-block" onclick="demo.showNotification('top','center',1)">Top Center</button>
+	                                </div>
+	                            </div>
+	                        </div>
 
 
 	</div>
@@ -136,7 +158,7 @@ const app = new Vue({
       showDetailModal:false
     },  
     mounted: function() {
-    	 <c:forEach var="vo" items="${TodoList}">// controller에서 List를 받아 foreach   
+    	 <c:forEach var="vo" items="${Todo.TodoListKey}">// controller에서 List를 받아 foreach   
         this.items = this.items.concat ({
        	no : "${vo.no}",
         title : "${vo.title}",
@@ -155,7 +177,7 @@ const app = new Vue({
     	this.items.position=item.position;
     	this.items.duedate=item.duedate;
     	
-  	    bus.$emit('imageTransport', this.items);
+  	    bus.$emit('Transport', this.items);
       }
       
    },
@@ -187,9 +209,10 @@ const app = new Vue({
 						
 						<tr style="text-align:left;border:hidden">
 							<td style="border:hidden;">
-								<h5><strong>content</strong><h5><hr>
+							<hr><h5><strong>content : </strong><h5>
 	                            <p>{{content}}</p>
 							</td>
+							
 						</tr>
 						
 						<tr style="text-align:left;border:hidden">
@@ -201,7 +224,7 @@ const app = new Vue({
 					</table>
 					<div align="right">
 	                <button class="btn btn-wd" @click="$emit('close')">Confirm</button>
-	                </div>
+	                </div>	
 				</div>
 				
 			    <footer class="modal-card-foot">
@@ -211,9 +234,9 @@ const app = new Vue({
 			
 			`
 	    	,	
-	         created : function() { // bus를 통해 이벤트가 호출 시 동작할 수 있도록 listener지정  		부모의 data에 접근하고싶다면 $on과 $emit 를 통해서 접근 가능하다!!
+	         created : function() { 
 		        var self = this;
-				bus.$on("imageTransport", function(list) { // 모든 user의 point를 합산한다. 
+				bus.$on("Transport", function(list) { 
 				    self.title = list.title;
 					self.content=list.content;
 					self.position = list.position;
@@ -225,7 +248,7 @@ const app = new Vue({
 	   
  }
    
-})
+});
 
 </script>
 
@@ -247,6 +270,20 @@ const app = new Vue({
 
 <!--materialize js-->
 <script type="text/javascript" src="/resources/demo/js/materialize.js"></script>
+
+
+<!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
+	<script src="/resources/assets/js/paper-dashboard.js"></script>
+
+    <!--  -->
+	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
+	<script src="/resources/assets/js/demo.js?v=<%=System.currentTimeMillis() %>"></script>
+	<!-- 자바스크립트 파일 수정시 바로바로 수정 가능  -->
+	<!-- http://zzznara2.tistory.com/689 -->
+	<!--  -->
+	
+<!--  Notifications Plugin    -->
+	<script src="/resources/assets/js/bootstrap-notify.js"></script>
 
 
 </html>

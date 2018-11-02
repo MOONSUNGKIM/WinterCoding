@@ -725,12 +725,11 @@ demo = {
 		});
     },
 
-	showNotification: function(from, align){
+	showNotification: function(from, align,position) {
     	color = Math.floor((Math.random() * 4) + 1);
-
-    	$.notify({
-        	icon: "ti-gift",
-        	message: "Welcome to <b>Paper Dashboard</b> - a beautiful freebie for every web developer."
+    	$.notify ({
+        	icon: "ti-user",
+        	message:"finished Duedate Position : "+ position
 
         },{
             type: type[color],
@@ -742,7 +741,7 @@ demo = {
         });
 	},
 
-	initDocumentationCharts: function(){
+	initDocumentationCharts: function() {
 //     	init single simple line chart
         var dataPerformance = {
           labels: ['6pm','9pm','11pm', '2am', '4am', '8am', '2pm', '5pm', '8pm', '11pm', '4am'],

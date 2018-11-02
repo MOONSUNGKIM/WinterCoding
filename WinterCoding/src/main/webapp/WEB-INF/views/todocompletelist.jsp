@@ -42,7 +42,17 @@
 <link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("#btnMove").click(function() {
+    	alert("Todo list move");
+        location.href = '${pageContext.servletContext.contextPath}/home';
+    });
+});
+
+
 </script>
 
 </head>
@@ -60,7 +70,7 @@
 
 		<detail modal-class="media-manager-details" v-show="showDetailModal"
 			@close="showDetailModal=false">
-		<p>Here is SLOT AREA</p>
+		<p></p>
 		</detail>
 
 		<div class="content">
@@ -99,10 +109,12 @@
 
 								</table>
 
-
 							</div>
 						</div>
 						<!--  end card  -->
+						<div align="right">
+	                			<button class="btn btn-wd" id="btnMove">TodoList</button>
+	                			</div>
 					</div>
 					<!-- end col-md-12 -->
 				</div>
@@ -142,7 +154,7 @@ const app = new Vue({
     	this.items.position=item.position;
     	this.items.duedate=item.duedate;
     	
-  	    bus.$emit('imageTransport', this.items);
+  	    bus.$emit('Transport', this.items);
       }
       
    },
@@ -202,7 +214,7 @@ const app = new Vue({
 	    	,	
 	         created : function() { // bus를 통해 이벤트가 호출 시 동작할 수 있도록 listener지정  		부모의 data에 접근하고싶다면 $on과 $emit 를 통해서 접근 가능하다!!
 		        var self = this;
-				bus.$on("imageTransport", function(list) { // 모든 user의 point를 합산한다. 
+				bus.$on("Transport", function(list) { // 모든 user의 point를 합산한다. 
 				    self.title = list.title;
 					self.content=list.content;
 					self.position = list.position;

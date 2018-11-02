@@ -1,6 +1,11 @@
 package com.example.ms.Controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,25 +23,63 @@ public class TodoController {
 	@Autowired
 	TodoMapper todomapper;
 	
-	static List<TodoVo> TodoList;
+	static Map<String,Object> Todo;
+	static List<TodoVo> TodoList,finisedTodoList;
 	static int max = 1;
-
+    static Date d = new Date();
+	
+	@RequestMapping(value="/test")  
+	public ModelAndView a(ModelAndView mav) throws Exception {		
+		TodoList = todomapper.todoliststate("incomplete");		
+		mav.addObject("TodoList", TodoList);
+		mav.setViewName("test");
+		max = TodoList.size();
+		return mav;
+	}
 	
 	//select incomplete
 	
 	@RequestMapping(value="/home")  
-	public ModelAndView todolistincomplete(ModelAndView mav) throws Exception {		
-		TodoList = todomapper.todoliststate("incomplete");		
-		mav.addObject("TodoList", TodoList);     
-		mav.setViewName("home");
+	public ModelAndView todolistincomplete() throws Exception {
+		  System.out.println("==home!==");
+		TodoList = todomapper.todoliststate("incomplete");
 		max = TodoList.size();
+		 
+		// 마감일 지난 todo 계산 
+		
+		finisedTodoList = new ArrayList<>(); 
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    String now = sdf.format(d);
+	    
+	    Date nowday = sdf.parse(now);
+		for(int i =0; i<TodoList.size(); i++) {
+			Date duedate = TodoList.get(i).getDuedate();
+		    int compare = nowday.compareTo(duedate);  
+		    if(compare > 0){ //마감기한 지남
+		    	System.out.println("!!!!!!!!!!!!!");
+		    	finisedTodoList.add(TodoList.get(i));
+		    }
+		}
+
+		Todo = new HashMap<>();
+		
+		Todo.put("TodoListKey",TodoList);
+		Todo.put("finisedTodoListKey", finisedTodoList);
+		
+		 System.out.println(Todo.size());
+	
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("Todo",Todo);
+		mav.setViewName("home");
+		
 		return mav;
 	}
 
 	//select complete
 
 	@RequestMapping(value="/completedlist")
-	public ModelAndView todolistcomplete(ModelAndView mav) throws Exception {		
+	public ModelAndView todolistcomplete(ModelAndView mav) throws Exception {	
 		TodoList = todomapper.todoliststate("complete");		
 		mav.addObject("TodoList", TodoList);     
 		mav.setViewName("todocompletelist"); 		
@@ -49,6 +92,7 @@ public class TodoController {
 		   System.out.println("==insert!==");
 		   return "todoinsert"; //insert page jsp 이동 
 	}
+	
 	@RequestMapping(value = "/insertsuccess", method = RequestMethod.POST)
 	public String insert(@ModelAttribute TodoVo vo) throws Exception {
 		System.out.println("=======================!! insert COntroller !!========================= ");
@@ -58,7 +102,6 @@ public class TodoController {
 		todomapper.todoinsert(vo);
 		return "redirect:/home";
 	}
-	
 	
 	//update
 	
