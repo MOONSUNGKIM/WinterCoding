@@ -10,12 +10,18 @@
 
 2. mysql 설치 및 접속
 
-2-1 데이터베이스생성
-create database wintercoding
+ 데이터베이스생성
+ create database wintercoding
 
-2-2 테이블 생성 
-create table todo(no int(11) primary key auto_increment, title varchar(45) not null, content varchar(4000), position int(11) not null, duedate datetime, complete varchar(45) );
+ 테이블 생성 
+ create table todo(no int(11) primary key auto_increment, title varchar(45) not null, content varchar(4000), position int(11) not null, duedate datetime, complete varchar(45) );
  
-3. war파일 tomcat/webapps에 배포
+3. war or jar파일 tomcat의 webapps에 배포
 
-4. 실행
+war 일때 실행 
+java -jar war파일명.war
+
+jar 일때 실행 
+java -jar jar파일명.jar
+
+4. 해당 port로 URL접속 
