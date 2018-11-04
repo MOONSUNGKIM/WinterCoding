@@ -142,7 +142,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js"></script>
 	<script>
 var bus = new Vue();
-
 const app = new Vue({
     el: "#todo",
     data: {
@@ -241,7 +240,6 @@ const app = new Vue({
  }
    
 });
-
 </script>
 
 </body>

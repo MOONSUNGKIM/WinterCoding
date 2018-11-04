@@ -20,7 +20,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 public class WinterCodingApplication extends WebMvcConfigurerAdapter {
 	
-	
 	public static void main(String[] args) {
 		SpringApplication.run(WinterCodingApplication.class, args);
 	}
