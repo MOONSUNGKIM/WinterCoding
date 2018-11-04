@@ -1,7 +1,10 @@
 # WinterCoding
 
+
+
 ## aws서버 배포
 프로젝트 접속 URL : http://54.180.88.205:8080/WinterCoding/home
+
 
 
 ## linux 기준 웹서버 실행 및 빌드 방법
