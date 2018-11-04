@@ -15,7 +15,7 @@ SpringBoot, mysql, Java, Javascript, CSS, HTML5, Vue.js, AWS
 ### 1.tomcat 설치 및 실행
 
 ### 2.mysql 설치 및 접속
->>
+
 database 생성
 ```bash
 create database wintercoding
