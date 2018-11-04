@@ -13,7 +13,7 @@
 ### 2.mysql 설치 및 접속
 >>
 database 생성
-'''bash
+''' java
 create database wintercoding'''
 
 table 생성 
