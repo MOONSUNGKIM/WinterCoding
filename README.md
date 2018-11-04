@@ -5,6 +5,8 @@
 ### aws서버 배포
 프로젝트 접속 URL : http://54.180.88.205:8080/WinterCoding/home
 
+### 개발환경
+SpringBoot, mysql, Java, Javascript, CSS, HTML5, Vue.js, AWS
 
 
 ## linux 기준 웹서버 실행 및 빌드 방법
