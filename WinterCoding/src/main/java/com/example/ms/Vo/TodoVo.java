@@ -3,11 +3,12 @@ package com.example.ms.Vo;
 import java.sql.Date;
 
 public class TodoVo {
- private int no;
- private String title;
+ private int no; 
+ private String title; 
  private String content;
  private int position;
- private Date duedate;
+ private Date duedate ;
+ private String duedate2="";
  private String complete;
  private int max;
  private int preposition;
@@ -45,6 +46,15 @@ public Date getDuedate() {
 public void setDuedate(Date duedate) {
 	this.duedate = duedate;
 }
+
+public String getDuedate2() {
+	return duedate2;
+}
+
+public void setDuedate2(String duedate2) {
+	this.duedate2 = duedate2;
+}
+
 public String getComplete() {
 	return complete;
 }

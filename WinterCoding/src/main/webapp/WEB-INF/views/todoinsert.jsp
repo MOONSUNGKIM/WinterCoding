@@ -90,7 +90,7 @@ $(document).ready(function() {
 	                                        <div class="form-group has-success">
 	                                            <label class="col-sm-2 control-label">Due date : </label>
 	                                            <div class="col-sm-10">
-	                                                <input type="date" id= "duedate" name="duedate" class = "form-control">
+	                                            <input type="date" id= "duedate2" name="duedate2" class = "form-control">
 	                                            </div>
 	                                        </div>
 	                                    

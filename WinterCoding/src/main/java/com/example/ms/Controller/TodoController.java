@@ -23,42 +23,43 @@ public class TodoController {
 	@Autowired
 	TodoMapper todomapper;
 	
-	static Map<String,Object> Todo;
-	static List<TodoVo> TodoList,finisedTodoList;
-	static int max = 1;
-    static Date d = new Date();
+	static Map<String,Object> Todo; // 완료된 todolist와 완료되지않은todolist 담기위함   
+	static List<TodoVo> TodoList,finisedTodoList; //  완료된 todolist,  완료되지않은todolist 리스트  
+	static int max = 1; // 전체 우선순위 사이즈를 알기위한 변수 
+    static Date d = new Date(); // 현재 날짜 
     
-	//select incomplete
+	//select incomplete (home)
 	@RequestMapping(value="/home")  
 	public ModelAndView todolistincomplete() throws Exception {
 		  System.out.println("==home Controller==");
-		TodoList = todomapper.todoliststate("incomplete");
-		max = TodoList.size();
-		 
-		// 마감일 지난 todo 계산 
-		
-		finisedTodoList = new ArrayList<>(); 
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	    String now = sdf.format(d);
-	    
-	    Date nowday = sdf.parse(now);
-		for(int i =0; i<TodoList.size(); i++) {
-			Date duedate = TodoList.get(i).getDuedate();
-		    int compare = nowday.compareTo(duedate);  
-		    if(compare > 0){ //마감기한 지남
-		    	finisedTodoList.add(TodoList.get(i));
-		    }
-		}
-
-		Todo = new HashMap<>();
-		Todo.put("TodoListKey",TodoList);
-		Todo.put("finisedTodoListKey", finisedTodoList);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("Todo",Todo);
-		mav.setViewName("home");
-		return mav;
+		  TodoList = todomapper.todoliststate("incomplete");
+			max = TodoList.size();
+			 
+			// 마감일 지난 todo 계산 
+			finisedTodoList = new ArrayList<>(); 
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		    String now = sdf.format(d);
+		    Date nowday = sdf.parse(now);
+		    
+			for(int i =0; i<TodoList.size(); i++) {
+				// 마감기한 정하지 않은것은 건너뜀 
+				Date duedate = TodoList.get(i).getDuedate();
+				if(duedate == null) continue;
+			    int compare = nowday.compareTo(duedate);
+			    if(compare > 0) { //마감기한 지남
+			    	finisedTodoList.add(TodoList.get(i));
+			    }
+			}
+			
+			Todo = new HashMap<>();			
+			Todo.put("TodoListKey",TodoList);
+			Todo.put("finisedTodoListKey", finisedTodoList);
+			
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("Todo",Todo);
+			mav.setViewName("home");
+			
+			return mav;
 	}
 
 	//select complete
@@ -78,16 +79,21 @@ public class TodoController {
 		   System.out.println("==insert Controller==");
 		   return "todoinsert"; 
 	}
-	
 	@RequestMapping(value = "/insertsuccess", method = RequestMethod.POST)
 	public String insert(@ModelAttribute TodoVo vo) throws Exception {
 		System.out.println("==insertsuccess Controller==");
+		
+		if(!vo.getDuedate2().equals("")) { //받아 온 데이터 값이 null아닐시에 
+			vo.setDuedate(java.sql.Date.valueOf(vo.getDuedate2()));
+		}
+
 		max = max+1;
 		vo.setPosition(max);
 		vo.setComplete("incomplete");
 		todomapper.todoinsert(vo);
 		return "redirect:/home";
 	}
+	// 
 	
 	//update
 	
@@ -102,22 +108,24 @@ public class TodoController {
 		return mav;
 	}
 	
-	
 	@RequestMapping(value = "/updatesuccess", method = RequestMethod.POST)
 	public String update(@ModelAttribute TodoVo vo) throws Exception {
 		System.out.println("==update success Controller==");
 		System.out.println(vo.getPosition());
+		
+		if(!vo.getDuedate2().equals("")) { //받아 온 데이터 값이 null아닐시에 
+			vo.setDuedate(java.sql.Date.valueOf(vo.getDuedate2()));
+		}
+		
 		vo.setComplete("incomplete");
 		todomapper.todoupdate(vo);
-		
 		// 해당 번호 앞뒤로 밀고당기고 
 		positionfunction2(vo.getNo(),vo.getPreposition(),vo.getPosition());
-		
 		return "redirect:home";
 	}
+	//
 	
 	//incomplete todo delete
-	
 	@RequestMapping(value = "/delete/{no}/{position}", method=RequestMethod.GET)
 	public String delete(@PathVariable("no") int no, @PathVariable("position") int position) throws Exception {
 		System.out.println("==delete Controller==");
@@ -151,9 +159,7 @@ public class TodoController {
 		positionfunction(position);
 		return "redirect:/completedlist";
 	}
-	
 
-	
 	//삭제시 position 재 배열 함수	
 	public void positionfunction(int noposition) throws Exception {
 		//삭제 시
@@ -172,7 +178,7 @@ public class TodoController {
 	public void positionfunction2(int no,int preposition, int position) throws Exception {
 		
 		TodoList = todomapper.todoliststate("incomplete"); // 
-		
+
 		// 기존 우선순위보다 우선순위를 앞으로 할경우  
 		
 		if(preposition > position) {
