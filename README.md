@@ -13,9 +13,9 @@
 ### 2.mysql 설치 및 접속
 >>
 database 생성
-''' bash
+```bash
 create database wintercoding
-'''
+```
 
 table 생성 
 ```bash
@@ -25,9 +25,13 @@ create table todo(no int(11) primary key auto_increment, title varchar(45) not n
 ### 3.war or jar파일 tomcat의 webapps에 배포
 
  war 실행
- '''java -jar war파일명.war'''
+ ```bash
+ java -jar war파일명.war
+ ```
  
  jar 실행
- '''java -jar jar파일명.jar'''
+ ```bash
+ java -jar jar파일명.jar
+ ```
 
 ### 4.해당 port로 URL접속 
