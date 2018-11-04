@@ -13,11 +13,14 @@
 ### 2.mysql 설치 및 접속
 >>
 database 생성
-''' java
-create database wintercoding'''
+''' bash
+create database wintercoding
+'''
 
 table 생성 
-'''create table todo(no int(11) primary key auto_increment, title varchar(45) not null, content varchar(4000), position int(11) not null, duedate datetime, complete varchar(45) );'''
+```bash
+create table todo(no int(11) primary key auto_increment, title varchar(45) not null, content varchar(4000), position int(11) not null, duedate datetime, complete varchar(45) );
+```
  
 ### 3.war or jar파일 tomcat의 webapps에 배포
 
