@@ -9,7 +9,7 @@
 
 ## linux 기준 웹서버 실행 및 빌드 방법
 >
-### 1.tomcat 설치 및 시작
+### 1.tomcat 설치 및 실행
 ### 2.mysql 설치 및 접속
 >>
 database 생성
