@@ -23,7 +23,7 @@ table 생성
  war 실행
  >java -jar war파일명.war
  
- jar 
+ jar 실행
  >java -jar jar파일명.jar
 
 ### 4.해당 port로 URL접속 
