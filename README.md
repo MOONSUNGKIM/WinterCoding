@@ -2,7 +2,7 @@
 
 
 
-## aws서버 배포
+### aws서버 배포
 프로젝트 접속 URL : http://54.180.88.205:8080/WinterCoding/home
 
 
