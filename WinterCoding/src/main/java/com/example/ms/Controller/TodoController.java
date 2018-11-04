@@ -27,21 +27,11 @@ public class TodoController {
 	static List<TodoVo> TodoList,finisedTodoList;
 	static int max = 1;
     static Date d = new Date();
-	
-	@RequestMapping(value="/test")  
-	public ModelAndView a(ModelAndView mav) throws Exception {		
-		TodoList = todomapper.todoliststate("incomplete");		
-		mav.addObject("TodoList", TodoList);
-		mav.setViewName("test");
-		max = TodoList.size();
-		return mav;
-	}
-	
+    
 	//select incomplete
-	
 	@RequestMapping(value="/home")  
 	public ModelAndView todolistincomplete() throws Exception {
-		  System.out.println("==home!==");
+		  System.out.println("==home Controller==");
 		TodoList = todomapper.todoliststate("incomplete");
 		max = TodoList.size();
 		 
@@ -57,30 +47,17 @@ public class TodoController {
 			Date duedate = TodoList.get(i).getDuedate();
 		    int compare = nowday.compareTo(duedate);  
 		    if(compare > 0){ //마감기한 지남
-		    	System.out.println("!!!!!!!!!!!!!");
 		    	finisedTodoList.add(TodoList.get(i));
 		    }
 		}
 
 		Todo = new HashMap<>();
-		
 		Todo.put("TodoListKey",TodoList);
 		Todo.put("finisedTodoListKey", finisedTodoList);
-	
 		
-		
-		ArrayList<TodoVo> al = (ArrayList<TodoVo>) Todo.get("finisedTodoListKey");
-			for(int i=0; i<al.size(); i++){
-			 System.out.println(al.get(i).getPosition());
-			}
-		
-		
-		 System.out.println(Todo.size());
-	
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("Todo",Todo);
 		mav.setViewName("home");
-		
 		return mav;
 	}
 
@@ -88,6 +65,7 @@ public class TodoController {
 
 	@RequestMapping(value="/completedlist")
 	public ModelAndView todolistcomplete(ModelAndView mav) throws Exception {	
+		System.out.println("==select complete Controller==");
 		TodoList = todomapper.todoliststate("complete");		
 		mav.addObject("TodoList", TodoList);     
 		mav.setViewName("todocompletelist"); 		
@@ -97,13 +75,13 @@ public class TodoController {
 	//insert
 	@RequestMapping("/insert")
 	   public String home() {
-		   System.out.println("==insert!==");
-		   return "todoinsert"; //insert page jsp 이동 
+		   System.out.println("==insert Controller==");
+		   return "todoinsert"; 
 	}
 	
 	@RequestMapping(value = "/insertsuccess", method = RequestMethod.POST)
 	public String insert(@ModelAttribute TodoVo vo) throws Exception {
-		System.out.println("=======================!! insert COntroller !!========================= ");
+		System.out.println("==insertsuccess Controller==");
 		max = max+1;
 		vo.setPosition(max);
 		vo.setComplete("incomplete");
@@ -114,21 +92,20 @@ public class TodoController {
 	//update
 	
 	@RequestMapping(value = "/update/{no}", method = RequestMethod.GET)
-	public ModelAndView view(@PathVariable("no") int no) throws Exception {
-		System.out.println("=====================!! update !! ====================");
+	public ModelAndView view(ModelAndView mav,@PathVariable("no") int no) throws Exception {
+		System.out.println("==update Controller==");
 		System.out.println(no);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("todoupdate");
 		TodoVo vo = todomapper.read(no);
 		vo.setMax(max);
 		mav.addObject("vo", vo);
+		mav.setViewName("todoupdate");
 		return mav;
 	}
 	
 	
 	@RequestMapping(value = "/updatesuccess", method = RequestMethod.POST)
 	public String update(@ModelAttribute TodoVo vo) throws Exception {
-		System.out.println("=============== !! update Controller !!================== ");
+		System.out.println("==update success Controller==");
 		System.out.println(vo.getPosition());
 		vo.setComplete("incomplete");
 		todomapper.todoupdate(vo);
@@ -143,7 +120,7 @@ public class TodoController {
 	
 	@RequestMapping(value = "/delete/{no}/{position}", method=RequestMethod.GET)
 	public String delete(@PathVariable("no") int no, @PathVariable("position") int position) throws Exception {
-		System.out.println("================!! delete Controller !! ==================");
+		System.out.println("==delete Controller==");
 		todomapper.tododelete(no);
 		//
 		positionfunction(position);
@@ -153,7 +130,7 @@ public class TodoController {
 	//completed todo delete
 	@RequestMapping(value = "/completedtododelete/{no}", method=RequestMethod.GET)
 	public String delete(@PathVariable("no") int no) throws Exception {
-		System.out.println("================!! delete Controller !! ==================");
+		System.out.println("==delete success Controller==");
 		todomapper.tododelete(no);
 		return "redirect:/completedlist";
 	}
@@ -169,7 +146,7 @@ public class TodoController {
 		vo.setComplete("complete");
 		todomapper.todostateupdate(vo);
 		
-		System.out.println("=============== !! complete change !!================== ");
+		System.out.println("==complete change Controller==");
 		
 		positionfunction(position);
 		return "redirect:/completedlist";
@@ -181,7 +158,6 @@ public class TodoController {
 	public void positionfunction(int noposition) throws Exception {
 		//삭제 시
 	    // 포지션 앞으로 하나씩 다 땡겨져야한다.
-		System.out.println("======="+noposition+"======");
 		TodoList = todomapper.todoliststate("incomplete"); // 
 		for(int i =0; i<TodoList.size(); i++){
 			if(TodoList.get(i).getPosition() >noposition){

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8" />
-   <link rel="apple-touch-icon" sizes="76x76" href="/resources/assets/img/apple-icon.png">
-   <link rel="icon" type="image/png" sizes="96x96" href="/resources/assets/img/favicon.png">
+   <link rel="apple-touch-icon" sizes="76x76" href="resources/assets/img/apple-icon.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="resources/assets/img/favicon.png">
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
    
 <title>WinterCoding</title>
@@ -14,24 +14,24 @@
     <meta name="viewport" content="width=device-width" />
 
      <!-- Bootstrap core CSS     -->
-    <link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="resources/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!--  Paper Dashboard core CSS    -->
-    <link href="/resources/assets/css/paper-dashboard.css" rel="stylesheet"/>
+    <link href="resources/assets/css/paper-dashboard.css" rel="stylesheet"/>
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="/resources/assets/css/demo.css" rel="stylesheet" />
+    <link href="resources/assets/css/demo.css" rel="stylesheet" />
 
 
     <!--  Fonts and icons     -->
-    <link href="/resources/assets/css/font-awesome.css" rel = "stylesheet">
-    <link href="/resources/assets/css/stylefont.css" rel="stylesheet">
-    <link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
+    <link href="resources/assets/css/font-awesome.css" rel = "stylesheet">
+    <link href="resources/assets/css/stylefont.css" rel="stylesheet">
+    <link href="resources/assets/css/themify-icons.css" rel="stylesheet">
      
      
   <!-- Custome CSS-->    
-  <link href="/resources/demo/css/plugins/media-hover-effects.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="resources/demo/css/plugins/media-hover-effects.css" type="text/css" rel="stylesheet" media="screen,projection">
   
 <div class="wrapper">
       <div class="sidebar" data-background-color="brown" data-active-color="danger">
@@ -52,19 +52,13 @@
                        <a data-toggle="collapse" href="#collapseExample" class="collapsed">
                            <b class="caret"></b>
                        </a>
-                       <div class="collapse" id="collapseExample">
-                           <ul class="nav">
-                               <li><a href="#profile">My Profile</a></li>
-                               <li><a href="#settings">Settings</a></li>
-                           </ul>
-                       </div>
                    </div>
                </div>
                <ul class="nav">
         
                    <li>
                   <a href="${pageContext.servletContext.contextPath}/home">
-                           <i class="ti-user"></i>
+                           <i class="ti-clipboard"></i>
                            <p>
                             Todo List
                               <b class="caret"></b>
@@ -75,7 +69,7 @@
                    
                    <li>
                   <a href="${pageContext.servletContext.contextPath}/completedlist">
-                           <i class="ti-user"></i>
+                           <i class="ti-clipboard"></i>
                            <p>
                           Todo Complete List
                               <b class="caret"></b>

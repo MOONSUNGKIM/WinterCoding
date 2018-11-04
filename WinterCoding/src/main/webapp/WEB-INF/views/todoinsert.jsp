@@ -1,20 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- ±âº»±â´É -->
+<!-- ê¸°ë³¸ê¸°ëŠ¥ -->
 <%@  taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!-- Æ÷¸ä ±â´É (Çü½ÄÁöÁ¤)-->
+<!-- í¬ë©§ ê¸°ëŠ¥ (í˜•ì‹ì§€ì •)-->
 <%@  taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!-- ÇÔ¼ö ±â´É -->
+<!-- í•¨ìˆ˜ ê¸°ëŠ¥ -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>WinterCoding</title>
 <link rel="apple-touch-icon" sizes="76x76"
-	href="/resources/assets/img/apple-icon.png">
+	href="resources/assets/img/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96"
-	href="/resources/assets/img/favicon.png">
+	href="resources/assets/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <meta
@@ -23,14 +23,14 @@
 <meta name="viewport" content="width=device-width" />
 
 <!-- Bootstrap core CSS     -->
-<link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="resources/assets/css/bootstrap.min.css" rel="stylesheet" />
 
 <!--  Paper Dashboard core CSS    -->
-<link href="/resources/assets/css/paper-dashboard.css" rel="stylesheet" />
+<link href="resources/assets/css/paper-dashboard.css" rel="stylesheet" />
 
 
 <!--  CSS for Demo Purpose, don't include it in your project     -->
-<link href="/resources/assets/css/demo.css" rel="stylesheet" />
+<link href="resources/assets/css/demo.css" rel="stylesheet" />
 
 
 <!--  Fonts and icons  -->
@@ -39,16 +39,16 @@
 	rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
-<link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
+<link href="resources/assets/css/themify-icons.css" rel="stylesheet">
 
 <!--materialize js-->
-	<script type="text/javascript" src="/resources/demo/js/materialize.js"></script>
+	<script type="text/javascript" src="resources/demo/js/materialize.js"></script>
 <!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
 	
-	<script src="/resources/assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="resources/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 	<!--  Bootstrap Table Plugin    -->
-	<script src="/resources/assets/js/bootstrap-table.js"></script>
+	<script src="resources/assets/js/bootstrap-table.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js">
 </script>
@@ -56,7 +56,7 @@
 <script>
 $(document).ready(function() {
     $("#btnFinish").click(function() {
-    	alert("btnFinish");
+    	alert("ìƒˆë¡œìš´ todoë¥¼ ë§Œë“¤ì—ˆìŠµë‹ˆë‹¤.");
         document.form2.submit();
     });
 });
@@ -124,10 +124,10 @@ $(document).ready(function() {
 </body>
 
 <!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
-	<script src="/resources/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="/resources/assets/js/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="resources/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="resources/assets/js/jquery-ui.min.js" type="text/javascript"></script>
 
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
-	<script src="/resources/assets/js/demo.js"></script>
+	<script src="resources/assets/js/demo.js"></script>
 
 </html>

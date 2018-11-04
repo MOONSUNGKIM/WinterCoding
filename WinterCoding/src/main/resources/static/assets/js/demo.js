@@ -729,7 +729,7 @@ demo = {
     	color = Math.floor((Math.random() * 4) + 1);
     	$.notify ({
         	icon: "ti-user",
-        	message:"finished Duedate Position : "+ position
+        	message:"마감기한이 지난 Position : "+ position +"을 Complete 해주세요."
 
         },{
             type: type[color],

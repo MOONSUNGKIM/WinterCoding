@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- 기본기능 -->
 <%@  taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -9,12 +9,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>WinterCoding</title>
 <link rel="apple-touch-icon" sizes="76x76"
-	href="/resources/assets/img/apple-icon.png">
+	href="resources/assets/img/apple-icon.png">
 <link rel="icon" type="image/png" sizes="96x96"
-	href="/resources/assets/img/favicon.png">
+	href="resources/assets/img/favicon.png">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
@@ -22,24 +22,24 @@
 <meta name="viewport" content="width=device-width" />
 
 <!-- Detail PopUP창을 위해 필요한 css이다. (MODAL관련 css ) -->
-<link rel="stylesheet" href="/resources/demo/css/msmodal.css" />
+<link rel="stylesheet" href="resources/demo/css/msmodal.css" />
 
 <!-- CORE CSS-->
-<link href="/resources/demo/css/style.css" type="text/css"
+<link href="resources/demo/css/style.css" type="text/css"
 	rel="stylesheet" media="screen,projection">
 <!-- Bootstrap core CSS     -->
-<link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="resources/assets/css/bootstrap.min.css" rel="stylesheet" />
 <!--  Paper Dashboard core CSS    -->
-<link href="/resources/assets/css/paper-dashboard.css" rel="stylesheet" />
+<link href="resources/assets/css/paper-dashboard.css" rel="stylesheet" />
 <!--  CSS for Demo Purpose, don't include it in your project     -->
-<link href="/resources/assets/css/demo.css" rel="stylesheet" />
+<link href="resources/assets/css/demo.css" rel="stylesheet" />
 <!--  Fonts and icons  -->
 <link
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
 	rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
-<link href="/resources/assets/css/themify-icons.css" rel="stylesheet">
+<link href="resources/assets/css/themify-icons.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <% int idx = 0; %>
 
@@ -65,7 +65,6 @@
     
   </script>
 <!--  -->
-
 
 	<%@include file="header.jsp"%>
 
@@ -248,35 +247,35 @@ const app = new Vue({
 </body>
 
 <!--  Bootstrap Table Plugin    -->
-<script src="/resources/assets/js/bootstrap-table.js"></script>
+<script src="resources/assets/js/bootstrap-table.js"></script>
 
 <!--   Core JS Files. Extra: PerfectScrollbar + TouchPunch libraries inside jquery-ui.min.js   -->
-<script src="/resources/assets/js/jquery-1.10.2.js"
+<script src="resources/assets/js/jquery-1.10.2.js"
 	type="text/javascript"></script>
-<script src="/resources/assets/js/jquery-ui.min.js"
+<script src="resources/assets/js/jquery-ui.min.js"
 	type="text/javascript"></script>
-<script src="/resources/assets/js/bootstrap.min.js"
+<script src="resources/assets/js/bootstrap.min.js"
 	type="text/javascript"></script>
 
 <!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
-<script src="/resources/assets/js/paper-dashboard.js"></script>
+<script src="resources/assets/js/paper-dashboard.js"></script>
 
 <!--materialize js-->
-<script type="text/javascript" src="/resources/demo/js/materialize.js"></script>
+<script type="text/javascript" src="resources/demo/js/materialize.js"></script>
 
 
 <!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
-	<script src="/resources/assets/js/paper-dashboard.js"></script>
+	<script src="resources/assets/js/paper-dashboard.js"></script>
 
     <!--  -->
 	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
-	<script src="/resources/assets/js/demo.js?v=<%=System.currentTimeMillis() %>"></script>
+	<script src="resources/assets/js/demo.js?v=<%=System.currentTimeMillis() %>"></script>
 	<!-- 자바스크립트 파일 수정시 바로바로 수정 가능  -->
 	<!-- http://zzznara2.tistory.com/689 -->
 	<!--  -->
 	
 <!--  Notifications Plugin    -->
-	<script src="/resources/assets/js/bootstrap-notify.js"></script>
+	<script src="resources/assets/js/bootstrap-notify.js"></script>
 
 
 </html>
