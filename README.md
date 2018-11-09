@@ -6,7 +6,7 @@
 프로젝트 접속 URL : http://54.180.88.205:8080/WinterCoding/home
 
 ### 개발환경
-SpringBoot, mysql, Java, Javascript, CSS, HTML5, Vue.js, AWS
+SpringBoot, mysql, Java, mybatis, Javascript, CSS, Bootstrap, HTML5, Vue.js, AWS
 
 ### 　
 
