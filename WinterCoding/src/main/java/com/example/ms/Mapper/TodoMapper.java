@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import com.example.ms.Vo.TodoVo;
 
+//변경 전 사용한 DAO
+
 @Repository("com.example.ms.Mapper.TodoMapper")
 public interface TodoMapper {
 	
@@ -14,7 +16,6 @@ public interface TodoMapper {
 	
 	//todolist -> incomplete or complete
 	public List<TodoVo> todoliststate(String complete) throws Exception;
-	
 	
 	//insert
 	public void todoinsert(TodoVo vo) throws Exception;

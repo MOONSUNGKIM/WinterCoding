@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -35,5 +36,11 @@ public class WinterCodingApplication extends WebMvcConfigurerAdapter {
        sessionFactory.setDataSource(dataSource);
        return sessionFactory.getObject();
    }
+   
+//   
+//   @Bean
+//   public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory){
+//	   return new SqlSessionTemplate(sqlSessionFactory);
+//   }
 		
 }

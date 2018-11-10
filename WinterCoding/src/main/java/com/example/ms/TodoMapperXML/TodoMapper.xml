@@ -2,9 +2,7 @@
 <!DOCTYPE mapper 
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
-<!-- 변경 전 사용한 Mapper.xml -->
- <mapper namespace="com.example.ms.Mapper.TodoMapper">
+ <mapper namespace="com.example.ms.TodoMapperXML.TodoMapper">
 
   <!-- todolist -->
     <select id="todolist" resultType="com.example.ms.Vo.TodoVo">

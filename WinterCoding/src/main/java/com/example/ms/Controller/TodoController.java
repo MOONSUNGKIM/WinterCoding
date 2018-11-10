@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.ms.Mapper.TodoMapper;
+import com.example.ms.Sevice.TodoService;
 import com.example.ms.Vo.TodoVo;
 
 @Controller
 public class TodoController {
 	@Autowired
-	TodoMapper todomapper;
+	//TodoMapper todomapper; // 기존 ->Controller가 Mapper package의 TodoMapper.java(Dao)를 직접 이용해 DB 접근하는 것을  
+	TodoService todomapper; // 변경 -> 비즈니스컴포넌트 ( Service, ServiceImpl,Dao)를 이용해 접근 -> 유지보수 용이 다형성장점  
 	
 	static Map<String,Object> Todo; // 완료된 todolist와 완료되지않은todolist 담기위함   
 	static List<TodoVo> TodoList,finisedTodoList; //  완료된 todolist,  완료되지않은todolist 리스트  
@@ -194,6 +195,7 @@ public class TodoController {
 				}
 			}
 		}
+		
 		// 기존 우선순위보다 우선순위를 뒤로 할경우 
 		else if(preposition < position){
 			for(int i =0; i<TodoList.size(); i++) {

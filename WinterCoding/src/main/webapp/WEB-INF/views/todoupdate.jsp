@@ -106,7 +106,6 @@ $(document).ready(function() {
 	                                        </div>
 	                                    
 	                                   
-	                                    
     	                                    <div class="form-group has-success">
 	                                            <label class="col-sm-2 control-label">Content : </label>
 	                                            <div class="col-sm-10">
