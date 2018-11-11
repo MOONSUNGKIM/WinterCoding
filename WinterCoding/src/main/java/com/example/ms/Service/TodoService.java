@@ -1,4 +1,4 @@
-package com.example.ms.Sevice;
+package com.example.ms.Service;
 
 import java.util.List;
 

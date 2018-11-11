@@ -1,4 +1,4 @@
-package com.example.ms.Sevice;
+package com.example.ms.Service;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ public class TodoServiceimpl implements TodoService{
 	@Override
 	public List<TodoVo> todoliststate(String complete) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("TodoServiceImpl -> todoliststate");
 		return dao.todoliststate(complete);
 	}
 

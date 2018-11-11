@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.ms.Sevice.TodoService;
+import com.example.ms.Service.TodoService;
 import com.example.ms.Vo.TodoVo;
 
 @Controller
