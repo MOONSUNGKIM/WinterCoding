@@ -5,7 +5,6 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -25,8 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 //@MapperScan(value={"com.example.ms.Mapper"})
 
 //변경 후 
-@MapperScan(value={"com.example.ms.Service.TodoService"})
-// -> Service interface 위치 지정 
+// 스프링부트는 Component Scan 기본 설정 되있다. (@Service, @Controller , @ Repository ) 알아서 자동 객체 생성   
 
 public class WinterCodingApplication extends WebMvcConfigurerAdapter {
 	
@@ -52,6 +50,7 @@ public class WinterCodingApplication extends WebMvcConfigurerAdapter {
        
        
        // **  ** //
+       
        return sessionFactory.getObject();
    }
    
